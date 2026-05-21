@@ -12,6 +12,7 @@ class Program
             "Write",
             "Display",
             "Stats",
+            "Stats",
             "Load",
             "Save",
             "Quit" // Keep quit last, defines loop logic
@@ -31,7 +32,10 @@ class Program
         {
             Console.WriteLine();
             Console.WriteLine("----------------------------------------------");
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------------");
             Console.WriteLine("Please select one of the following choices:");
+
 
             // Display Menu options
             int count = 0;
@@ -41,9 +45,14 @@ class Program
                 Console.WriteLine($"{count}. {menuOptions[count - 1]}");
             }
 
+
             // User Menu Select
             Console.Write(" > ");
             userInput = Console.ReadLine().Trim();
+            // userChoiceInt = int.Parse(userInput);
+            int.TryParse(userInput, out userChoiceInt); // Bad input friendly
+            
+
             // userChoiceInt = int.Parse(userInput);
             int.TryParse(userInput, out userChoiceInt); // Bad input friendly
             
@@ -57,7 +66,10 @@ class Program
 
             // Choice Declaration
             Console.WriteLine();
+            // Choice Declaration
+            Console.WriteLine();
             Console.WriteLine($"You selected {userChoiceInt}. {userChoiceText}");
+            Console.WriteLine();
             Console.WriteLine();
 
             if (userChoiceText == "Write")
@@ -72,6 +84,7 @@ class Program
                 Console.WriteLine($"{prompt}");
 
                 // Response logic
+                Console.Write(" > ");
                 Console.Write(" > ");
                 string response = Console.ReadLine();
 
@@ -101,6 +114,15 @@ class Program
                 Console.WriteLine($"   Total Characters Entered: {charCount}");
 
             }
+            else if (userChoiceText == "Stats")
+            {
+                int entryCount = myJournal._entries.Count();
+                int charCount = myJournal.GetTotalCharCount();
+                Console.WriteLine("  Stats:");
+                Console.WriteLine($"   Entry Count: {entryCount}");
+                Console.WriteLine($"   Total Characters Entered: {charCount}");
+
+            }
             else if (userChoiceText == "Save")
             {
                 Console.WriteLine("What is the filename?");
@@ -113,7 +135,12 @@ class Program
                 Console.WriteLine("Goodbye!");
                 Console.WriteLine();
                 break;
+                Console.WriteLine();
+                break;
             }
+
+        } while (true);
+
 
         } while (true);
 
