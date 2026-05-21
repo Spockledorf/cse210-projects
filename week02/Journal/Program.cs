@@ -12,7 +12,6 @@ class Program
             "Write",
             "Display",
             "Stats",
-            "Stats",
             "Load",
             "Save",
             "Quit" // Keep quit last, defines loop logic
@@ -94,15 +93,6 @@ class Program
                 Console.Write(" > ");
                 userInput = Console.ReadLine().Trim();
                 myJournal.LoadFromFile(userInput);
-            }
-            else if (userChoiceText == "Stats")
-            {
-                int entryCount = myJournal._entries.Count();
-                int charCount = myJournal.GetTotalCharCount();
-                Console.WriteLine("  Stats:");
-                Console.WriteLine($"   Entry Count: {entryCount}");
-                Console.WriteLine($"   Total Characters Entered: {charCount}");
-
             }
             else if (userChoiceText == "Stats")
             {
