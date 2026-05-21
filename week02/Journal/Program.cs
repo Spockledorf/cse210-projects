@@ -99,7 +99,7 @@ class Program
             }
             else if (userChoiceText == "Stats")
             {
-                int entryCount = myJournal._entries.Count();
+                int entryCount = myJournal.GetEntryCount();
                 int charCount = myJournal.GetTotalCharCount();
                 Console.WriteLine(" Stats:");
                 Console.WriteLine($"   Entry Count: {entryCount}");
@@ -108,9 +108,9 @@ class Program
             }
             else if (userChoiceText == "Save")
             {
-                if (myJournal._entries.Count() == 0)
+                if (myJournal.GetEntryCount() == 0)
                 {
-                    Console.WriteLine("No entires found!");
+                    Console.WriteLine("No entries found!");
                 }
                 else
                 {

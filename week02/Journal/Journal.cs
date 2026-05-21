@@ -69,4 +69,8 @@ public class Journal
         }
         return charCount;
     }
+    public int GetEntryCount()
+    {
+        return _entries.Count;
+    }
 }
