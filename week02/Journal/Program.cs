@@ -32,8 +32,6 @@ class Program
         {
             Console.WriteLine();
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("----------------------------------------------");
             Console.WriteLine("Please select one of the following choices:");
 
 
@@ -51,11 +49,7 @@ class Program
             userInput = Console.ReadLine().Trim();
             // userChoiceInt = int.Parse(userInput);
             int.TryParse(userInput, out userChoiceInt); // Bad input friendly
-            
 
-            // userChoiceInt = int.Parse(userInput);
-            int.TryParse(userInput, out userChoiceInt); // Bad input friendly
-            
 
             // Basic Error handling for user choosing numbers outside menuOptions range
             if (!(userChoiceInt >= 1 && userChoiceInt <= menuOptions.Count))
@@ -66,10 +60,7 @@ class Program
 
             // Choice Declaration
             Console.WriteLine();
-            // Choice Declaration
-            Console.WriteLine();
             Console.WriteLine($"You selected {userChoiceInt}. {userChoiceText}");
-            Console.WriteLine();
             Console.WriteLine();
 
             if (userChoiceText == "Write")
@@ -84,7 +75,6 @@ class Program
                 Console.WriteLine($"{prompt}");
 
                 // Response logic
-                Console.Write(" > ");
                 Console.Write(" > ");
                 string response = Console.ReadLine();
 
@@ -135,15 +125,8 @@ class Program
                 Console.WriteLine("Goodbye!");
                 Console.WriteLine();
                 break;
-                Console.WriteLine();
-                break;
             }
 
         } while (true);
-
-
-        } while (true);
-
-
     }
 }
