@@ -1,5 +1,5 @@
-// Responsibility:
-// Behavior: 
+// Responsibility: Provides journal writing prompts. 
+// Behavior: Stores a list of prompts and returns a random one when requested.
 public class PromptGenerator
 {
     private readonly List<string> _prompts = [
@@ -13,8 +13,8 @@ public class PromptGenerator
         "How did you help your family feel cared about and seen today?",
         "What are you most excited for in the next 168 hours?",
         "What's something you've been thinking about a lot today?"
-        ];  
-   
+        ];
+
     public string GetRandomPrompt()
     {
         int randomIndex = Random.Shared.Next(0, _prompts.Count);
