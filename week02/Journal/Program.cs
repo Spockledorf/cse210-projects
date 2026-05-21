@@ -1,3 +1,5 @@
+// Exceeding requirements: Added "Stats" option showing entry count and total characters written.
+
 using System;
 
 class Program
@@ -9,6 +11,7 @@ class Program
         List<string> menuOptions = [
             "Write",
             "Display",
+            "Stats",
             "Load",
             "Save",
             "Quit" // Keep quit last, defines loop logic
@@ -26,8 +29,10 @@ class Program
         // Loop start
         do
         {
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------------");
             Console.WriteLine("Please select one of the following choices:");
-            
+
             // Display Menu options
             int count = 0;
             foreach (string option in menuOptions)
@@ -35,12 +40,14 @@ class Program
                 count++;
                 Console.WriteLine($"{count}. {menuOptions[count - 1]}");
             }
-            
+
             // User Menu Select
             Console.Write(" > ");
             userInput = Console.ReadLine().Trim();
-            userChoiceInt = int.Parse(userInput);
+            // userChoiceInt = int.Parse(userInput);
+            int.TryParse(userInput, out userChoiceInt); // Bad input friendly
             
+
             // Basic Error handling for user choosing numbers outside menuOptions range
             if (!(userChoiceInt >= 1 && userChoiceInt <= menuOptions.Count))
             {
@@ -48,8 +55,10 @@ class Program
             }
             userChoiceText = menuOptions[userChoiceInt - 1];
 
-            // Debug line! REMOVE ME
+            // Choice Declaration
+            Console.WriteLine();
             Console.WriteLine($"You selected {userChoiceInt}. {userChoiceText}");
+            Console.WriteLine();
 
             if (userChoiceText == "Write")
             {
@@ -63,6 +72,7 @@ class Program
                 Console.WriteLine($"{prompt}");
 
                 // Response logic
+                Console.Write(" > ");
                 string response = Console.ReadLine();
 
                 // Entry logic
@@ -73,7 +83,6 @@ class Program
             }
             else if (userChoiceText == "Display")
             {
-                // TODO
                 myJournal.DisplayAll();
             }
             else if (userChoiceText == "Load")
@@ -82,6 +91,15 @@ class Program
                 Console.Write(" > ");
                 userInput = Console.ReadLine().Trim();
                 myJournal.LoadFromFile(userInput);
+            }
+            else if (userChoiceText == "Stats")
+            {
+                int entryCount = myJournal._entries.Count();
+                int charCount = myJournal.GetTotalCharCount();
+                Console.WriteLine("  Stats:");
+                Console.WriteLine($"   Entry Count: {entryCount}");
+                Console.WriteLine($"   Total Characters Entered: {charCount}");
+
             }
             else if (userChoiceText == "Save")
             {
@@ -93,10 +111,12 @@ class Program
             else if (userChoiceText == "Quit")
             {
                 Console.WriteLine("Goodbye!");
+                Console.WriteLine();
+                break;
             }
-            
-        } while (userChoiceInt != quitOption);
-        
+
+        } while (true);
+
 
     }
 }
