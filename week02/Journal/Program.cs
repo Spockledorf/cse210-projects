@@ -1,4 +1,6 @@
-// Exceeding requirements: Added "Stats" option showing entry count and total characters written.
+// Exceeding requirements: 
+//  - Added "Stats" option showing entry count and total characters written.
+//  - Added "Clear" option to clear currently loaded journal.
 
 using System;
 
@@ -14,6 +16,7 @@ class Program
             "Stats",
             "Load",
             "Save",
+            "Clear",
             "Quit" // Keep quit last, defines loop logic
         ];
 
@@ -75,7 +78,7 @@ class Program
 
                 // Response logic
                 Console.Write(" > ");
-                string response = Console.ReadLine();
+                string response = Console.ReadLine().Trim();
 
                 // Entry logic
                 Entry newEntry = new Entry(dateText, prompt, response);
@@ -98,17 +101,29 @@ class Program
             {
                 int entryCount = myJournal._entries.Count();
                 int charCount = myJournal.GetTotalCharCount();
-                Console.WriteLine("  Stats:");
+                Console.WriteLine(" Stats:");
                 Console.WriteLine($"   Entry Count: {entryCount}");
                 Console.WriteLine($"   Total Characters Entered: {charCount}");
 
             }
             else if (userChoiceText == "Save")
             {
-                Console.WriteLine("What is the filename?");
-                Console.Write(" > ");
-                userInput = Console.ReadLine().Trim();
-                myJournal.SaveToFile(userInput);
+                if (myJournal._entries.Count() == 0)
+                {
+                    Console.WriteLine("No entires found!");
+                }
+                else
+                {
+                    Console.WriteLine("What is the filename?");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    myJournal.SaveToFile(userInput);
+                }
+            }
+            else if (userChoiceText == "Clear")
+            {
+                myJournal._entries.Clear();
+                Console.WriteLine("Entries cleared!");
             }
             else if (userChoiceText == "Quit")
             {
