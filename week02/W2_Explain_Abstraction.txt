@@ -1,0 +1,45 @@
+Instructions
+Now that you have learned about the principle of abstraction, and designed and developed a program using it, return to Canvas and answer the following question (the way you would in a job interview):
+
+What is abstraction and why is it important?
+Your response must:
+Explain the meaning of Abstraction.
+Highlight a benefit of Abstraction.
+Provide an application of Abstraction.
+Use a code example of Abstraction from the program you wrote. (You should copy and paste a few lines of code that demonstrate the use of the principle.)
+Thoroughly explain these concepts. (This likely cannot be done in less than 100 words.)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Abstraction is separating "what" code does from "how" it does it. 
+One of the greatest benefits of abstraction is maintainability. When you separate your "how" code and your "what" code, you can easily fix issues in your how logic in one place, rather than trying to find and fix every instance of the code throughout your program. It means you can, in a single place, upgrade/improve/fix your methods without needing to tear down your entire code. 
+When you use a TV remote, you interact with the interface (the buttons) to do what you want. You don't necessarily need to understand the mechanics of "how" the button gets the input to the TV, all you need to know is the label (e.g. volume up, volume down, skip). The remote lets you use complex logic while you only need to know the names of the action it's implementing.
+An example of how abstraction could be used is as follows:
+```(From my Program.cs)
+
+if (userChoiceText == "Stats")
+            {
+                int entryCount = myJournal.GetEntryCount();
+                int charCount = myJournal.GetTotalCharCount();
+                Console.WriteLine(" Stats:");
+                Console.WriteLine($"   Entry Count: {entryCount}");
+                Console.WriteLine($"   Total Characters Entered: {charCount}");
+            }```
+
+```(From my Journal.cs)
+
+public int GetTotalCharCount()
+    {
+        int charCount = 0;
+        foreach (Entry entry in _entries)
+        {
+            int stringLength = entry._entryText.Length;
+            charCount += stringLength;
+        }
+        return charCount;
+    }
+    public int GetEntryCount()
+    {
+        return _entries.Count;
+    }```
+In this example, my main code tells my program "what" to do, such as getting the entry count and the character count. Then my class file defines "how" the program will do the action. This keeps complex implementation details out of the main code, leaving only clean, readable actions.
