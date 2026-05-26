@@ -1,5 +1,7 @@
 // Responsibility: 
 // Behavior: 
+using System.Text;
+
 public class Scripture
 {
     private Reference _reference;
@@ -22,27 +24,33 @@ public class Scripture
 
     }
 
-    public void HideRandomWords() { }
+    public void HideRandomWords(int numberToHide)
+    {
+        // randomly select words from 
+    }
     public string GetDisplayText()
     {
+        string displaytext;
         string textReference = _reference.GetDisplayText();
-        string wordsText = "";
+        StringBuilder verseText = new StringBuilder();
+
         foreach (Word word in _words)
         {
-            wordsText = $"{wordsText} {word.GetDisplayText()}";
-            // if (word.IsHidden() == false)
-            // {
-            //     wordsText = wordsText + word;
-            // }
-            // else
-            // {
-            //     word.
-            // }
+            verseText.Append($"{word.GetDisplayText()} ");
         }
-        return textReference + wordsText;
+        
+        displaytext = textReference + " " + verseText.ToString();
+        return displaytext;
     }
     public bool IsCompletelyHidden()
     {
-        return false;
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
