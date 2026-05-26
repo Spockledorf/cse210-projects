@@ -1,5 +1,5 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a scripture reference (book, chapter, verse(s)).
+// Behavior: Supports single verses and verse ranges, displays formatted reference text.
 public class Reference
 {
     private string _book;
