@@ -5,7 +5,7 @@ public class Reference
     private string _book;
     private int _chapter;
     private int _verse;
-    private int _verseEnd;
+    private int? _verseEnd;
 
     // Constructor(s)
     public Reference(string book, int chapter, int verse)
@@ -24,6 +24,10 @@ public class Reference
 
     public string GetDisplayText()
     {
-        return "";
+        if (_verseEnd.HasValue)
+        {
+            return $"{_book} {_chapter}:{_verse}-{_verseEnd}";
+        }
+        return $"{_book} {_chapter}:{_verse}";
     }
 }
