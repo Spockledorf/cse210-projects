@@ -2,23 +2,39 @@
 // Behavior: 
 public class Word
 {
-    private string _text = "";
+    private string _text;
     private bool _isHidden;
 
     // Constructor(s)
     public Word(string text)
     {
+        _text = text.Trim();
     }
 
-    public void Hide() { }
-    public void Show() { }
+    public void Hide()
+    {
+        _isHidden = true;
+    }
+    public void Show()
+    {
+        _isHidden = false;
+    }
     public bool IsHidden()
     {
-        return false;
+        return _isHidden;
     }
     public string GetDisplayText()
     {
-        string displayText = "";
-        return displayText;
+        if (!_isHidden)
+        {
+            return _text;
+        }
+        else
+        {
+            // Replace all characters with '_'
+            string hiddenText = new string('_', _text.Length);
+            return hiddenText;
+            // TODO Consider replacing ONLY alphabet chars, preserving special characters at the end.
+        }
     }
 }
