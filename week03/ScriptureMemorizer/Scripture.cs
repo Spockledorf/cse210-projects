@@ -5,7 +5,7 @@ using System.Text;
 public class Scripture
 {
     private Reference _reference;
-    private List<Word> _words = [];
+    private List<Word> _words = new List<Word>();
 
     // Constructor(s)
     public Scripture(Reference reference, string text)
@@ -16,7 +16,7 @@ public class Scripture
 
         // Get word list
         // string[] parts = text.Split(" ");
-        foreach (string word in text.Split(" "))
+        foreach (string word in text.Split(' ', StringSplitOptions.RemoveEmptyEntries))
         {
             Word w = new Word(word);
             _words.Add(w);
