@@ -26,7 +26,18 @@ public class Scripture
 
     public void HideRandomWords(int numberToHide)
     {
-        // randomly select words from 
+        int hiddenCount = 0;
+
+        while (hiddenCount < numberToHide && !IsCompletelyHidden())
+        {
+            int randomIndex = Random.Shared.Next(0, _words.Count);
+            
+            if (!_words[randomIndex].IsHidden())
+            {
+                _words[randomIndex].Hide();
+                hiddenCount++;
+            }
+        }
     }
     public string GetDisplayText()
     {
