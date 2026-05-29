@@ -12,7 +12,7 @@ public class Scripture
     {
         // set reference
         _reference = reference;
-        
+
 
         // Get word list
         // string[] parts = text.Split(" ");
@@ -31,7 +31,7 @@ public class Scripture
         while (hiddenCount < numberToHide && !IsCompletelyHidden())
         {
             int randomIndex = Random.Shared.Next(0, _words.Count);
-            
+
             if (!_words[randomIndex].IsHidden())
             {
                 _words[randomIndex].Hide();
@@ -39,7 +39,7 @@ public class Scripture
             }
         }
     }
-    public string GetDisplayText()
+    public string GetDisplayText(bool? hidePunctuation)
     {
         string displaytext;
         string textReference = _reference.GetDisplayText();
@@ -47,9 +47,16 @@ public class Scripture
 
         foreach (Word word in _words)
         {
-            verseText.Append($"{word.GetDisplayText()} ");
+            if (hidePunctuation == true)
+            {
+                verseText.Append($"{word.GetDisplayTextAll()} ");
+            }
+            else
+            {
+                verseText.Append($"{word.GetDisplayText()} ");
+            }
         }
-        
+
         displaytext = textReference + " " + verseText.ToString();
         return displaytext;
     }

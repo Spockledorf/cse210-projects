@@ -31,10 +31,29 @@ public class Word
         }
         else
         {
-            // Replace all characters with '_'
-            // string hiddenText = new string('_', _text.Length);
-            // return hiddenText;
-            // TODO Consider replacing ONLY alphabet chars, preserving special characters at the end.
+            // Replace all letter characters with '_'
+            char[] chars = _text.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (char.IsLetter(chars[i]))
+                {
+                    chars[i] = '_';
+                }
+            }
+
+            return new string(chars);
+        }
+    }
+    public string GetDisplayTextAll()
+    {
+        if (!_isHidden)
+        {
+            return _text;
+        }
+        else
+        {
+            // Replace all letter characters with '_'
             char[] chars = _text.ToCharArray();
 
             for (int i = 0; i < chars.Length; i++)
