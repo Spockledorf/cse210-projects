@@ -19,7 +19,9 @@ class Program
         string userInput;
         int userInt;
         string selectedOption;
-        
+        int difficultySetting;
+        bool IsPunctuationHidden;
+
         do
         {
             Console.Clear();
@@ -57,7 +59,7 @@ class Program
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine(myScripture.GetDisplayText(myScripture.IsPunctuationHidden()));
+                    Console.WriteLine(myScripture.GetDisplayText());
 
                     if (myScripture.IsCompletelyHidden())
                     {
@@ -82,7 +84,80 @@ class Program
             }
             else if (selectedOption == "Use User-Entered Verse")
             {
-                
+                string userInputBook;
+                int userInputChapter;
+                int userInputVerse;
+                int userInputVerseEnd;
+
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter Book: ");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    userInputBook = userInput;
+                    Console.Clear();
+                    Console.WriteLine($"Is {userInputBook} correct? (yes/no)");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    if (userInput.ToLower() == "yes")
+                    {
+                        break;
+                    }
+                } while (true);
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter Chapter: ");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    // Bad input friendly
+                    if (int.TryParse(userInput, out userInputChapter))
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Is chapter {userInputChapter} correct? (yes/no)");
+                        Console.Write(" > ");
+                        userInput = Console.ReadLine().Trim();
+                        if (userInput.ToLower() == "yes")
+                        {
+                            break;
+                        }
+                    }
+                } while (true);
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter Verse: ");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    // Bad input friendly
+                    if (int.TryParse(userInput, out userInputVerse))
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Is verse {userInputVerse} correct? (yes/no)");
+                        Console.Write(" > ");
+                        userInput = Console.ReadLine().Trim();
+                        if (userInput.ToLower() == "yes")
+                        {
+                            break;
+                        }
+                    }
+                } while (true);
+
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Choose difficulty setting:  (Default: 3)");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    // userChoiceInt = int.Parse(userInput);
+                    int.TryParse(userInput, out difficultySetting); // Bad input friendly
+
+                } while (true);
+
             }
             else if (selectedOption == "Quit")
             {

@@ -53,7 +53,7 @@ public class Word
         }
         else
         {
-            // Replace all letter characters with '_'
+            // Replace ALL characters with '_'
             char[] chars = _text.ToCharArray();
 
             for (int i = 0; i < chars.Length; i++)

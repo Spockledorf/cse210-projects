@@ -41,7 +41,7 @@ public class Scripture
             }
         }
     }
-    public string GetDisplayText(bool? hidePunctuation)
+    public string GetDisplayText()
     {
         string displaytext;
         string textReference = _reference.GetDisplayText();
@@ -49,7 +49,7 @@ public class Scripture
 
         foreach (Word word in _words)
         {
-            if (hidePunctuation == true)
+            if (_punctuationHidden == true)
             {
                 verseText.Append($"{word.GetDisplayTextAll()} ");
             }
