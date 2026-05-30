@@ -20,8 +20,6 @@ class Program
         string userInput;
         int userInt;
         string selectedOption;
-        int difficultySetting = 3; // 1-10, adjusts how many words are hidden each pass. Default: 3
-        bool hidePunctuation = false; // true or false, adjusts the hide/show word logic to include or exclude special characters. Default: true
 
         do
         {
@@ -60,7 +58,7 @@ class Program
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine(myScripture.GetDisplayText(hidePunctuation));
+                    Console.WriteLine(myScripture.GetDisplayText(myScripture.IsPunctuationHidden()));
 
                     if (myScripture.IsCompletelyHidden())
                     {
