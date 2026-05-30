@@ -88,6 +88,7 @@ class Program
                 int userInputChapter;
                 int userInputVerse;
                 int userInputVerseEnd;
+                string userInputVerseText;
 
 
                 do
@@ -129,7 +130,7 @@ class Program
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("Enter Verse: ");
+                    Console.WriteLine("Enter Verse Number: ");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
                     // Bad input friendly
@@ -145,12 +146,52 @@ class Program
                         }
                     }
                 } while (true);
-
-
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("Choose difficulty setting:  (Default: 3)");
+                    Console.WriteLine("Enter End Verse Number: (Or '0' if only one verse)");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    // Bad input friendly
+                    if (int.TryParse(userInput, out userInputVerseEnd))
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Is verse {userInputVerseEnd} correct? (yes/no)");
+                        Console.Write(" > ");
+                        userInput = Console.ReadLine().Trim();
+                        if (userInput.ToLower() == "yes")
+                        {
+                            break;
+                        }
+                    }
+                } while (true);
+
+                Reference userReference = new Reference(userInputBook, userInputChapter, userInputVerse, userInputVerseEnd);
+                
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter Verse Text: ");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    userInputVerseText = userInput;
+                    Console.Clear();
+                    Console.WriteLine($"Is this verse text correct? (yes/no)");
+                    Console.WriteLine(" --- ");
+                    Console.WriteLine($"{userInputVerseText}");
+                    Console.WriteLine(" --- ");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    if (userInput.ToLower() == "yes")
+                    {
+                        break;
+                    }
+                } while (true);
+                
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Choose difficulty setting:  (Default: 3, must be int between 1 and 10 inclusive)");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
                     // userChoiceInt = int.Parse(userInput);
