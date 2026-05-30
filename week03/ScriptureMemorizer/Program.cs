@@ -20,7 +20,7 @@ class Program
         int userInt;
         string selectedOption;
         int difficultySetting;
-        bool IsPunctuationHidden;
+        bool isPunctuationHidden;
 
         do
         {
@@ -167,7 +167,7 @@ class Program
                 } while (true);
 
                 Reference userReference = new Reference(userInputBook, userInputChapter, userInputVerse, userInputVerseEnd);
-                
+
                 do
                 {
                     Console.Clear();
@@ -187,17 +187,62 @@ class Program
                         break;
                     }
                 } while (true);
-                
+
                 do
                 {
                     Console.Clear();
                     Console.WriteLine("Choose difficulty setting:  (Default: 3, must be int between 1 and 10 inclusive)");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
-                    // userChoiceInt = int.Parse(userInput);
                     int.TryParse(userInput, out difficultySetting); // Bad input friendly
+                    if (difficultySetting >= 1 && difficultySetting <= 10)
+                    {
+                        break;
+                    }
 
                 } while (true);
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Choose punctuation setting:  (Default: No. Yes / No, determines whether or not to hide punctuation.)");
+                    Console.Write(" > ");
+                    userInput = Console.ReadLine().Trim();
+                    bool.TryParse(userInput, out isPunctuationHidden); // Bad input friendly
+                    if (isPunctuationHidden == true || isPunctuationHidden == false)
+                    {
+                        break;
+                    }
+
+                } while (true);
+
+                Scripture userScripture = new Scripture(userReference, userInputVerseText);
+                userScripture.AdjustSettings(difficultySetting, isPunctuationHidden);
+
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine(userScripture.GetDisplayText());
+
+                    if (userScripture.IsCompletelyHidden())
+                    {
+                        Console.WriteLine("All words hidden!");
+                        Console.ReadLine();
+                        break;
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Press Enter to continue or type 'quit'.");
+
+                    userInput = Console.ReadLine().Trim().ToLower();
+
+                    if (userInput == "quit")
+                    {
+                        break;
+                    }
+
+                    userScripture.HideRandomWords(userScripture.GetDifficulty());
+                }
 
             }
             else if (selectedOption == "Quit")
