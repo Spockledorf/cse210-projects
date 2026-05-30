@@ -58,10 +58,7 @@ public class Word
 
             for (int i = 0; i < chars.Length; i++)
             {
-                if (char.IsLetter(chars[i]))
-                {
-                    chars[i] = '_';
-                }
+                chars[i] = '_';
             }
 
             return new string(chars);
