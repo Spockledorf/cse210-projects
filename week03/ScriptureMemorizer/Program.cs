@@ -13,16 +13,13 @@ class Program
         List<string> menuOptions = new List<string>{
             "Use Pre-Loaded Verse",
             "Use User-Entered Verse",
-            "Adjust Settings",
             "Quit" // Keep quit last, defines loop logic
         };
 
         string userInput;
         int userInt;
         string selectedOption;
-        int difficultySetting = 3; // 1-10, adjusts how many words are hidden each pass. Default: 3
-        bool hidePunctuation = false; // true or false, adjusts the hide/show word logic to include or exclude special characters. Default: true
-
+        
         do
         {
             Console.Clear();
@@ -60,7 +57,7 @@ class Program
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine(myScripture.GetDisplayText(hidePunctuation));
+                    Console.WriteLine(myScripture.GetDisplayText(myScripture.IsPunctuationHidden()));
 
                     if (myScripture.IsCompletelyHidden())
                     {
@@ -79,9 +76,13 @@ class Program
                         break;
                     }
 
-                    myScripture.HideRandomWords(difficultySetting);
+                    myScripture.HideRandomWords(myScripture.GetDifficulty());
                 }
 
+            }
+            else if (selectedOption == "Use User-Entered Verse")
+            {
+                
             }
             else if (selectedOption == "Quit")
             {
