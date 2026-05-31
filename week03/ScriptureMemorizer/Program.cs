@@ -99,10 +99,10 @@ class Program
                     userInput = Console.ReadLine().Trim();
                     userInputBook = userInput;
                     Console.Clear();
-                    Console.WriteLine($"Is {userInputBook} correct? (yes/no)");
+                    Console.WriteLine($"Is {userInputBook} correct? ('Enter' to proceed, any text to change)");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
-                    if (userInput.ToLower() == "yes")
+                    if (userInput.ToLower() == "")
                     {
                         break;
                     }
@@ -118,10 +118,10 @@ class Program
                     if (int.TryParse(userInput, out userInputChapter))
                     {
                         Console.Clear();
-                        Console.WriteLine($"Is chapter {userInputChapter} correct? (yes/no)");
+                        Console.WriteLine($"Is chapter {userInputChapter} correct? ('Enter' to proceed, any text to change)");
                         Console.Write(" > ");
                         userInput = Console.ReadLine().Trim();
-                        if (userInput.ToLower() == "yes")
+                        if (userInput.ToLower() == "")
                         {
                             break;
                         }
@@ -137,10 +137,10 @@ class Program
                     if (int.TryParse(userInput, out userInputVerse))
                     {
                         Console.Clear();
-                        Console.WriteLine($"Is verse {userInputVerse} correct? (yes/no)");
+                        Console.WriteLine($"Is verse {userInputVerse} correct? ('Enter' to proceed, any text to change)");
                         Console.Write(" > ");
                         userInput = Console.ReadLine().Trim();
-                        if (userInput.ToLower() == "yes")
+                        if (userInput.ToLower() == "")
                         {
                             break;
                         }
@@ -156,10 +156,10 @@ class Program
                     if (int.TryParse(userInput, out userInputVerseEnd))
                     {
                         Console.Clear();
-                        Console.WriteLine($"Is verse {userInputVerseEnd} correct? (yes/no)");
+                        Console.WriteLine($"Is verse {userInputVerseEnd} correct? ('Enter' to proceed, any text to change)");
                         Console.Write(" > ");
                         userInput = Console.ReadLine().Trim();
-                        if (userInput.ToLower() == "yes")
+                        if (userInput.ToLower() == "")
                         {
                             break;
                         }
@@ -176,13 +176,13 @@ class Program
                     userInput = Console.ReadLine().Trim();
                     userInputVerseText = userInput;
                     Console.Clear();
-                    Console.WriteLine($"Is this verse text correct? (yes/no)");
+                    Console.WriteLine($"Is this verse text correct? ('Enter' to proceed, any text to change)");
                     Console.WriteLine(" --- ");
                     Console.WriteLine($"{userInputVerseText}");
                     Console.WriteLine(" --- ");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
-                    if (userInput.ToLower() == "yes")
+                    if (userInput.ToLower() == "")
                     {
                         break;
                     }
