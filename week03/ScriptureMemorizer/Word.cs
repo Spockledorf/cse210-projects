@@ -1,5 +1,5 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a single word in the verse of scirpture.
+// Behavior: Stores the word's text and tracks it's visibility. provides methods for hiding/showing text and displaying all/letters only.
 public class Word
 {
     private string _text;

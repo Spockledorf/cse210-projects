@@ -1,3 +1,9 @@
+// Exceeding requirements:
+//  - Added a main menu allowing the user to choose between a pre-loaded verse or entering a custom verse.
+//  - Added input validation and confirmation prompts throughout the user-entry flow.
+//  - Added a configurable difficulty setting (1-10) controlling how many words are hidden per pass.
+//  - Added a punctuation-hiding mode that optionally replaces all characters (including punctuation) with underscores.
+
 using System;
 
 class Program

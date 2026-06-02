@@ -1,5 +1,5 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a complete scripture, including reference and verse text as a list of words.
+// Behavior: Stores verse as list of words and manages hiding logic and difficulty parameters. 
 using System.Text;
 
 public class Scripture
