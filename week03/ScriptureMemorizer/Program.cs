@@ -211,11 +211,11 @@ class Program
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("Choose punctuation setting:  (Default: No. Yes / No, determines whether or not to hide punctuation.)");
+                    Console.WriteLine("Choose punctuation setting:  (Default: false. Accepts: true or false. Determines whether or not to hide punctuation.)");
                     Console.Write(" > ");
                     userInput = Console.ReadLine().Trim();
-                    bool.TryParse(userInput, out isPunctuationHidden); // Bad input friendly
-                    if (isPunctuationHidden == true || isPunctuationHidden == false)
+                    
+                    if (bool.TryParse(userInput, out isPunctuationHidden))
                     {
                         break;
                     }
