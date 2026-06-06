@@ -2,22 +2,23 @@
 // Behavior: 
 public class Product
 {
-    private string _template1 = "";
-    private string _template2 = "";
-    private string _template3 = "";
+    private string _productName = "";
+    private int _productID;
+    private decimal _unitPrice;
+    private int _quantity;
 
     // Constructor(s)
-    // public Order(string arg1, string arg2, string arg3)
-    // {
-    //     _template1 = arg1;
-    //     _template2 = arg2;
-    //     _template3 = arg3;
-    // }
+    public Product(string productName, int productID, decimal unitPrice, int quantity)
+    {
+        _productName = productName.Trim();
+        _productID = productID;
+        _unitPrice = unitPrice;
+        _quantity = quantity;
+    }
 
-    // public void Display()
-    // {
-    //     Console.WriteLine($"1. {_template1}");
-    //     Console.WriteLine($"2. {_template2}");
-    //     Console.WriteLine($"3. {_template3}");
-    // }
+    public decimal GetProductCost()
+    {
+        return _unitPrice * _quantity;
+    }
+
 }
