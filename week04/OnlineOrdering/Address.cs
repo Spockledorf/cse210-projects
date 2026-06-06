@@ -1,23 +1,36 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents an address as strings for street address, city, state/province, and country.
+// Behavior: Returns full address as a string. Can dertermine if address is in USA.
 public class Address
 {
-    private string _template1 = "";
-    private string _template2 = "";
-    private string _template3 = "";
+    private string _streetAddress = "";
+    private string _city = "";
+    private string _stateProvince = "";
+    private string _country = "";
 
     // Constructor(s)
-    // public Order(string arg1, string arg2, string arg3)
-    // {
-    //     _template1 = arg1;
-    //     _template2 = arg2;
-    //     _template3 = arg3;
-    // }
+    public Address(string streetAddress, string city, string stateProvince, string country)
+    {
+        _streetAddress = streetAddress.Trim();
+        _city = city.Trim();
+        _stateProvince = stateProvince.Trim();
+        _country = country.Trim();
 
-    // public void Display()
-    // {
-    //     Console.WriteLine($"1. {_template1}");
-    //     Console.WriteLine($"2. {_template2}");
-    //     Console.WriteLine($"3. {_template3}");
-    // }
+    }
+
+    public bool IsCountryUSA()
+    {
+        if (_country.ToLower() == "usa")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public string GetCompleteAddress()
+    {
+        return $"{_streetAddress}, {_city}, {_stateProvince}, {_country}";
+    }
+
 }
