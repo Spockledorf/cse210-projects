@@ -2,22 +2,20 @@
 // Behavior: 
 public class Customer
 {
-    private string _template1 = "";
-    private string _template2 = "";
-    private string _template3 = "";
+    private string _name = "";
+    private Address _address;
 
     // Constructor(s)
-    // public Order(string arg1, string arg2, string arg3)
-    // {
-    //     _template1 = arg1;
-    //     _template2 = arg2;
-    //     _template3 = arg3;
-    // }
+    public Customer(string name, Address address)
+    {
+        _name = name.Trim();
+        _address = address;
+    }
 
-    // public void Display()
-    // {
-    //     Console.WriteLine($"1. {_template1}");
-    //     Console.WriteLine($"2. {_template2}");
-    //     Console.WriteLine($"3. {_template3}");
-    // }
-}
+    public bool IsCountryUSA()
+    {
+        // Address.IsCountryUSA()
+        return IsCountryUSA();
+    }
+
+ }
