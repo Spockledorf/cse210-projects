@@ -14,8 +14,7 @@ public class Customer
 
     public bool IsCountryUSA()
     {
-        // Address.IsCountryUSA()
-        return IsCountryUSA();
+        return _address.IsCountryUSA();
     }
 
  }

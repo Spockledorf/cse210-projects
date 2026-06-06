@@ -13,17 +13,20 @@ public class Order
 
     public void AddProduct(Product product)
     {
-        // Add product
+        _productList.Add(product);
     }
     public decimal GetTotalCost() 
     {
-        // Product.GetProductCost()
-        return 0;
+        decimal total = 0;
+        foreach (Product product in _productList)
+        {
+            total += product.GetProductCost();
+        }
+        return total;
     }
     public bool IsCountryUSA()
     {
-        // Customer.IsCountryUSA()
-        return true;
+        return _customer.IsCountryUSA();
     }
     public void DisplayPackingLbl()
     {
