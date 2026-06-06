@@ -1,5 +1,7 @@
 // Responsibility: 
 // Behavior: 
+using System.Security.Cryptography;
+
 public class Product
 {
     private string _productName = "";
@@ -19,6 +21,11 @@ public class Product
     public decimal GetProductCost()
     {
         return _unitPrice * _quantity;
+    }
+
+    public void DisplayDetails()
+    {
+        Console.WriteLine($"ID: {_productID,-10} Name: {_productName,-20} QTY: {_quantity,10}");
     }
 
 }
