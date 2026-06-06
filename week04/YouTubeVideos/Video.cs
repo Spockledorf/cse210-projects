@@ -1,5 +1,7 @@
 // Responsibility: 
 // Behavior: 
+
+using System.Text;
 public class Video
 {
     private string _title = "";
@@ -24,6 +26,7 @@ public class Video
     {
         // Return string for display details
         // TODO
+        StringBuilder videoDisplayText = new StringBuilder();
         return "";
     }
     public int GetCommentCount()
