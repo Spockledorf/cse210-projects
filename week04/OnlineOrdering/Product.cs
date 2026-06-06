@@ -6,6 +6,10 @@ public class Product
     private int _productID;
     private decimal _unitPrice;
     private int _quantity;
+    private string _productName = "";
+    private int _productID;
+    private decimal _unitPrice;
+    private int _quantity;
 
     // Constructor(s)
     public Product(string productName, int productID, decimal unitPrice, int quantity)
