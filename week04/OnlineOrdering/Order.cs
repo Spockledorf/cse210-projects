@@ -40,10 +40,29 @@ public class Order
     public void DisplayPackingLbl()
     {
         // Display Packing lbl
+        // A packing label should list the name and product id of each product in the order.
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("      ------- Packing Label --------");
+        Console.WriteLine("------------------------------------------");
+
     }
     public void DisplayShippingLbl()
     {
         // Display Shipping lbl
+        // A shipping label should list the name and address of the customer.
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("     -------- Shipping Label --------");
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine($"Customer: {_customer.GetCustomerName()}");
+        Console.WriteLine($"Address: {_customer.GetCustomerAddress()}");
+        if (IsCountryUSA())
+        {
+            Console.WriteLine("   [✓] Shipping inside USA");
+        }
+        else
+        {
+            Console.WriteLine("   [✗] Shipping outside USA");
+        }
     }
 
 }
