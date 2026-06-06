@@ -44,6 +44,10 @@ public class Order
         Console.WriteLine("------------------------------------------");
         Console.WriteLine("      ------- Packing Label --------");
         Console.WriteLine("------------------------------------------");
+        foreach (Product product in _productList)
+        {
+            product.DisplayDetails();
+        }
 
     }
     public void DisplayShippingLbl()

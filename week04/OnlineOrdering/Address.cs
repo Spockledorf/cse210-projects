@@ -19,7 +19,7 @@ public class Address
 
     public bool IsCountryUSA()
     {
-        if (_country.ToLower() == "usa")
+        if (_country.ToLower() == "usa" || _country.ToLower() == "united states")
         {
             return true;
         }
