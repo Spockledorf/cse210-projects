@@ -17,12 +17,21 @@ public class Order
     }
     public decimal GetTotalCost() 
     {
-        decimal total = 0;
+        decimal subtotal = 0;
+        decimal shippingCost;
         foreach (Product product in _productList)
         {
-            total += product.GetProductCost();
+            subtotal += product.GetProductCost();
         }
-        return total;
+        if (IsCountryUSA())
+        {
+            shippingCost = 5;
+        }
+        else
+        {
+            shippingCost = 35;
+        }
+        return subtotal + shippingCost;
     }
     public bool IsCountryUSA()
     {
