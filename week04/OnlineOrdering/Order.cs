@@ -1,5 +1,7 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a customer order containing multiple products.
+// Behavior: Stores a customer and a list of products. 
+//           Adds products to the order, calculates the total cost of the order, 
+//           and generates packing and shipping labels.
 public class Order
 {
     private List<Product> _productList = new List<Product>();

@@ -1,5 +1,6 @@
-// Responsibility: Represents an address as strings for street address, city, state/province, and country.
-// Behavior: Returns full address as a string. Can dertermine if address is in USA.
+// Responsibility: Represents a physical shipping address.
+// Behavior: Stores street, city, state/province, and country. 
+//           Determines whether the address is in the USA and formats the full address for labels.
 public class Address
 {
     private string _streetAddress = "";

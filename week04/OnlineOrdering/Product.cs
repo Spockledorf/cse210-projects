@@ -1,5 +1,6 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a single product available for ordering.
+// Behavior: Stores product name, ID, price, and quantity. 
+//           Calculates the total cost for this product (price × quantity).
 using System.Security.Cryptography;
 
 public class Product

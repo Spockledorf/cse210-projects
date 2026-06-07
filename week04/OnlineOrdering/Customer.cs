@@ -1,5 +1,6 @@
-// Responsibility: 
-// Behavior: 
+// Responsibility: Represents a customer who places an order.
+// Behavior: Stores the customer's name and their shipping address. 
+//           Provides the customer's name and full address for use in packing and shipping labels.
 public class Customer
 {
     private string _name = "";

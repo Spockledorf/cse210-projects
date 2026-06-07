@@ -4,9 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-
-
-
         // Order #1
         Address address1 = new Address("633 N Milwaukee St", "Boise", "Idaho", "USA");
         Customer customer1 = new Customer("Targesh LeBron", address1);
