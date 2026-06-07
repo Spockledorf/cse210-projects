@@ -13,18 +13,18 @@ class Program
         Order order1 = new Order(customer1);
         
         // Order #2
-        Address address2 = new Address("633 N Milwaukee St", "Boise", "Idaho", "USA");
-        Customer customer2 = new Customer("Targesh LeBron", address2);
+        Address address2 = new Address("Sta. Rosa 12", "Iquitos", "16001", "Peru");
+        Customer customer2 = new Customer("Peru Man", address2);
         Order order2 = new Order(customer2);
         
         // Order #3
-        Address address3 = new Address("633 N Milwaukee St", "Boise", "Idaho", "USA");
-        Customer customer3 = new Customer("Targesh LeBron", address3);
+        Address address3 = new Address("Cape Henry Trail", "Virginia Beach", "Virgina", "USA");
+        Customer customer3 = new Customer("Trailman Tom", address3);
         Order order3 = new Order(customer3);
         
         // Order #4
-        Address address4 = new Address("633 N Milwaukee St", "Boise", "Idaho", "USA");
-        Customer customer4 = new Customer("Targesh LeBron", address4);
+        Address address4 = new Address("222 S Cayuga St", "Ithaca", "New York", "USA");
+        Customer customer4 = new Customer("Ithaca Hotel", address4);
         Order order4 = new Order(customer4);
 
         // Add products
@@ -47,9 +47,28 @@ class Program
         order4.AddProduct(new Product("Cherry Turnover", 8345, (decimal)3.50, 11));
         order4.AddProduct(new Product("Almond Biscotti", 2614, (decimal)2.20, 18));
 
+
+        // Display All
+        
         order1.DisplayPackingLbl();
         Console.WriteLine();
         order1.DisplayShippingLbl();
+        Console.WriteLine($"Total: ${order1.GetTotalCost()}");
+        
+        order2.DisplayPackingLbl();
+        Console.WriteLine();
+        order2.DisplayShippingLbl();
+        Console.WriteLine($"Total: ${order2.GetTotalCost()}");
+        
+        order3.DisplayPackingLbl();
+        Console.WriteLine();
+        order3.DisplayShippingLbl();
+        Console.WriteLine($"Total: ${order3.GetTotalCost()}");
+        
+        order4.DisplayPackingLbl();
+        Console.WriteLine();
+        order4.DisplayShippingLbl();
+        Console.WriteLine($"Total: ${order4.GetTotalCost()}");
 
     }
 }
