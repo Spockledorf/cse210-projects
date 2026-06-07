@@ -49,26 +49,33 @@ class Program
 
 
         // Display All
-        
+        Console.WriteLine(" -------------------------------------------------------------------------- ");
         order1.DisplayPackingLbl();
         Console.WriteLine();
         order1.DisplayShippingLbl();
         Console.WriteLine($"Total: ${order1.GetTotalCost()}");
+        Console.WriteLine();
         
+        Console.WriteLine(" -------------------------------------------------------------------------- ");
         order2.DisplayPackingLbl();
         Console.WriteLine();
         order2.DisplayShippingLbl();
         Console.WriteLine($"Total: ${order2.GetTotalCost()}");
+        Console.WriteLine();
         
+        Console.WriteLine(" -------------------------------------------------------------------------- ");
         order3.DisplayPackingLbl();
         Console.WriteLine();
         order3.DisplayShippingLbl();
         Console.WriteLine($"Total: ${order3.GetTotalCost()}");
+        Console.WriteLine();
         
+        Console.WriteLine(" -------------------------------------------------------------------------- ");
         order4.DisplayPackingLbl();
         Console.WriteLine();
         order4.DisplayShippingLbl();
         Console.WriteLine($"Total: ${order4.GetTotalCost()}");
+        Console.WriteLine();
 
     }
 }

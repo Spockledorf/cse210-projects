@@ -25,7 +25,7 @@ public class Product
 
     public void DisplayDetails()
     {
-        Console.WriteLine($"ID: {_productID,-7} Name: {_productName,-26} QTY: {_quantity,4}");
+        Console.WriteLine($"ID: {_productID,-7} Name: {_productName,-26} Unit Price (USD): ${_unitPrice,-7} QTY: {_quantity,4}");
     }
 
 }
