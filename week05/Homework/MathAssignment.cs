@@ -14,6 +14,6 @@ public class MathAssignment : Assignment
     public string GetHomeworkList()
     {
         // Returns HW list
-        return "";
+        return $"Section {_textbookSection} Problems {_problems}";
     }
 }
