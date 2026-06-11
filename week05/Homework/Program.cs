@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Homework Project.");
+        Assignment myAssignment = new Assignment("Mr. Clown", "Funny Business");
+        string mySummary = myAssignment.GetSummary();
+
+        Console.WriteLine(mySummary);
     }
 }
