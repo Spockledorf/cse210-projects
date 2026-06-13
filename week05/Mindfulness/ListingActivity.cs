@@ -54,7 +54,6 @@ public class ListingActivity : Activity
     public List<string> GetListFromUser()
     {
         List<string> responses = new List<string>();
-        DisplayPrompt();
         var timer = Stopwatch.StartNew();
         while (timer.Elapsed.TotalSeconds < _duration)
         {
