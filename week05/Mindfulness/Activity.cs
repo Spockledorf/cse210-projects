@@ -55,7 +55,7 @@ public class Activity
             current = frames[frame];
             if (isTimeDisplayed)
             {
-                current = current + $" {(int)(seconds - elapsed)}s";
+                current = current + $" {(int)(seconds - elapsed)}s  ";
             }
             charCount = current.Length;
 
@@ -104,11 +104,11 @@ public class Activity
             string frame;
             if (isTimeDisplayed)
             {
-                frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
+                frame = $"| {bar} | {elapsed:F0}s / {seconds}s  ";
             }
             else
             {
-                frame = $"| {bar} |";
+                frame = $"| {bar} |  ";
             }
             int charCount = frame.Length;
 

@@ -51,31 +51,33 @@ public class BreathingActivity : Activity
         for (int i = 0; i < cycles; i++)
         {
             Console.WriteLine();
-            Console.WriteLine($"Breathe in...      (Cycle {i + 1} of {cycles})");
+            Console.WriteLine($"(Cycle {i + 1} of {cycles})");
+            Console.Write($"Breathe in...      ");
             ShowProgressBar(inhale, inhale * 2, true, true);
 
             if (hold1 > 0)
             {
-                Console.WriteLine($"Hold...     ");
+                Console.Write($"Hold...           ");
                 // ShowProgressBar(hold1, hold1 * 2, true, true);
                 ShowSpinner(hold1, true);
+                Console.WriteLine();
             }
 
-            Console.WriteLine("Breathe out...  ");
+            Console.Write("Breathe out...     ");
             ShowProgressBar(exhale, exhale * 2, false, true);
             
             if (hold2 > 0)
             {
-                Console.WriteLine($"Hold...     ");
+                Console.Write($"Hold...           ");
                 // ShowProgressBar(hold2, hold2 * 2, true, true);
                 ShowSpinner(hold2, true);
+                Console.WriteLine();
             }
         }
 
         // Display breathing metrics
         DisplayBreathingStats(inhale, hold1, exhale, hold2, cycles, timer.Elapsed.Minutes, timer.Elapsed.Seconds);
-        Console.WriteLine("Press enter to continue.");
-        Console.ReadLine();
+        ShowSpinner(10, true);
 
         // End of unique activity
         DisplayEndingMessage();
