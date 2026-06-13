@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class ReflectingActivity : Activity
 {
     private List<string> _prompts = new List<string>();
@@ -13,7 +15,21 @@ public class ReflectingActivity : Activity
     {
         DisplayStartingMessage();
         _duration = GetValidatedDuration();
-        // Unique Activity here
+
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+        ShowSpinner(3, false);
+        
+        // Display prompt and pause
+        Console.Clear();
+        DisplayPrompt();
+        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
+        Console.Write("You may begin in: ");
+        ShowSpinner(5, true);
+
+        // Display questions
+        Console.Clear();
+        DisplayQuestions();
 
         // End of unique activity
         DisplayEndingMessage();
@@ -21,25 +37,41 @@ public class ReflectingActivity : Activity
     public string GetRandomPrompt()
     {
         int randomIndex = Random.Shared.Next(0, _prompts.Count);
-        
+
         // Improvement idea: add list of used strings via indexes.
-        
+
         return _prompts[randomIndex];
     }
     public string GetRandomQuestion()
     {
-        int randomIndex = Random.Shared.Next(0, _prompts.Count);
-        
+        int randomIndex = Random.Shared.Next(0, _questions.Count);
+
         // Improvement idea: add list of used strings via indexes.
-        
+
         return _questions[randomIndex];
     }
     public void DisplayPrompt()
     {
         // Display prompt logic
+        Console.WriteLine();
+        Console.WriteLine("Consider the following prompt: ");
+        Console.WriteLine();
+        Console.WriteLine($"  --- {GetRandomPrompt()} ---");
+        Console.WriteLine();
+        Console.WriteLine("When you have something in mind, press enter to continue. ");
+        Console.ReadLine();
     }
     public void DisplayQuestions()
     {
         // Display questions logic
+        var timer = Stopwatch.StartNew();
+
+        while (timer.Elapsed.TotalSeconds < _duration)
+        {
+            Console.WriteLine(GetRandomQuestion());
+            ShowSpinner(10, false);
+        }
+        
+        Console.WriteLine();
     }
 }

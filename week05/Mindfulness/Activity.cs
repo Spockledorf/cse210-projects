@@ -20,8 +20,6 @@ public class Activity
         Console.WriteLine($"Welcome to the {_name}!");
         Console.WriteLine();
         Console.WriteLine($"{_description}");
-
-
     }
     public void DisplayEndingMessage()
     {
@@ -43,7 +41,7 @@ public class Activity
         // Character pool: [▌ ▀ ▐ ▄] [▖ ▘ ▝ ▗] [| / — \] [▰ ▱ ▱ ▱]
 
         List<string> frames = [" ▌ ", " ▀ ", " ▐ ", " ▄ "];
-        int frameCount = frames.Count();
+        int frameCount = frames.Count;
         int frame = 0;
         string current;
         double elapsed;
