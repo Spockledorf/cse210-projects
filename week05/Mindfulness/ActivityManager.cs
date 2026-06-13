@@ -65,13 +65,52 @@ public class ActivityManager
 
 
         ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will guide the user to think deeply, by having them consider a certain experience when they were successful or demonstrated strength. Then, prompt them with questions to reflect more deeply about details of this experience. They might discover more depth than they previously realized.", 0, prompts, questions);
-        
+
         reflectingActivity.Run();
     }
 
     private void StartListingActivity()
     {
-        List<string> prompts = new List<string>();
+        List<string> prompts =
+        [
+            "Who are people that you appreciate?",
+            "Who has supported you through a difficult time?",
+            "Who are people you have helped this week?",
+            "Who has made you laugh recently?",
+            "Who are some of your personal heroes?",
+            "Who has positively influenced who you are today?",
+            "Who do you feel safe around?",
+
+            "What are personal strengths of yours?",
+            "What skills have you developed over the years?",
+            "What challenges have you overcome?",
+            "What are things you are proud of accomplishing?",
+            "What habits have improved your life?",
+            "What have you learned this past year?",
+
+            "What simple pleasures bring you happiness?",
+            "What places make you feel at peace?",
+            "What memories make you smile?",
+            "What foods do you enjoy?",
+            "What hobbies or activities energize you?",
+            "What books, movies, or music have impacted you?",
+            "What things in nature do you find beautiful?",
+
+            "When have you felt the Holy Ghost this month?",
+            "What blessings have you received this week?",
+            "What prayers have been answered in your life?",
+            "What gospel principles have brought you peace?",
+            "Who are people you have served recently?",
+            "What scriptures or quotes have strengthened you?",
+
+            "What modern conveniences are you grateful for?",
+            "What opportunities are available to you?",
+            "What things about your home do you appreciate?",
+            "What freedoms do you enjoy?",
+            "What about your health are you grateful for?",
+            "What resources do you have access to?"
+        ];
+
         ListingActivity listingActivity = new ListingActivity("Listing Activity", "This activity will guide the user to think broadly, by helping them list as many things as they can in a certain area of strength or positivity. They might discover more breadth than they previously realized. ", 0, prompts);
 
         listingActivity.Run();
