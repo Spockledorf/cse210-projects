@@ -3,7 +3,7 @@ using System.Diagnostics;
 public class ListingActivity : Activity
 {
     int _count = 0;
-    public List<string> _prompts = new List<string>();
+    private List<string> _prompts = new List<string>();
 
     public ListingActivity(string name, string description, int duration, List<string> prompts) : base(name, description, duration)
     {
