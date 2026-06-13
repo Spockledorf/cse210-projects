@@ -7,7 +7,7 @@ class Program
     {
         Activity myActivity = new Activity("Name", "Description", 30);
 
-        // myActivity.ShowSpinner(10);
-        myActivity.ShowCountdown(10);
+        myActivity.ShowSpinner(10);
+        myActivity.ShowProgressBar(10);
     }
 }

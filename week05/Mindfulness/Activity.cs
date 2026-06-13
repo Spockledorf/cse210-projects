@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class Activity
 {
     protected string _name = "";
@@ -49,31 +51,30 @@ public class Activity
         }
     }
 
-    public void ShowCountdown(int seconds)
+    public void ShowProgressBar(int seconds)
     {
-        // Countdown logic
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(seconds);
+        var stopwatch = Stopwatch.StartNew();
+        
         int updateSpeed = 100;
-        
-        // Character pool: [▌ ▀ ▐ ▄] [▖ ▘ ▝ ▗] [| / — \] [▰ ▱ ▱ ▱]
-        
-        int barLength = 20;
+        int barLength = 30;
 
-        while (DateTime.Now < futureTime)
+        while (stopwatch.Elapsed.TotalSeconds < seconds)
         {
-            // How far through the duration are we?
-            double elapsed = (DateTime.Now - startTime).TotalSeconds;
-            int filled = (int)Math.Round((elapsed / seconds) * barLength);
-            filled = Math.Clamp(filled, 0, barLength);
+            double elapsed = stopwatch.Elapsed.TotalSeconds;
+            int filled = (int)Math.Round(elapsed / seconds * barLength);
+            filled = Math.Clamp(filled, 1, barLength);
 
-            string bar = new string('▓', filled) + new string('░', barLength - filled);
-            string frame = $"[ {bar} ]";
+            string bar = new string('█', filled) + new string('-', barLength - filled);
+            string frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
             int charCount = frame.Length;
 
             Console.Write(frame);
             Thread.Sleep(updateSpeed);
             Console.Write(new string('\b', charCount) + new string(' ', charCount) + new string('\b', charCount));
         }
+
+        // Write the completed bar
+        string completed = $"| {new string('█', barLength)} | {seconds}s / {seconds}s";
+        Console.WriteLine(completed);
     }
 }
