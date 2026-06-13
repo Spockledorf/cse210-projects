@@ -54,19 +54,26 @@ public class ActivityManager
 
     private void StartBreathingActivity()
     {
-        BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity", "This activity will help the user pace their breathing to have a session of deep breathing for a certain amount of time. They might find more peace and less stress through the exercise.", 0);
+        BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity", "This activity will help the user pace their breathing to have a session of deep breathing for a certain amount of time. They might find more peace and less stress through the exercise. \n\n*Note: Complete cycles of breathing will be determined based on what fits withing the user-defined duration. Actual activity time may be slightly shorter or longer than the input.", 0);
         breathingActivity.Run();
     }
 
     private void StartReflectingActivity()
     {
-        ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will guide the user to think deeply, by having them consider a certain experience when they were successful or demonstrated strength. Then, prompt them with questions to reflect more deeply about details of this experience. They might discover more depth than they previously realized.", 0);
+        List<string> prompts = new List<string>();
+        List<string> questions = new List<string>();
+
+
+        ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will guide the user to think deeply, by having them consider a certain experience when they were successful or demonstrated strength. Then, prompt them with questions to reflect more deeply about details of this experience. They might discover more depth than they previously realized.", 0, prompts, questions);
+        
         reflectingActivity.Run();
     }
 
     private void StartListingActivity()
     {
-        ListingActivity listingActivity = new ListingActivity("Listing Activity", "This activity will guide the user to think broadly, by helping them list as many things as they can in a certain area of strength or positivity. They might discover more breadth than they previously realized. ", 0);
+        List<string> prompts = new List<string>();
+        ListingActivity listingActivity = new ListingActivity("Listing Activity", "This activity will guide the user to think broadly, by helping them list as many things as they can in a certain area of strength or positivity. They might discover more breadth than they previously realized. ", 0, prompts);
+
         listingActivity.Run();
     }
 
