@@ -1,9 +1,9 @@
-public class ReflectingActivity
+public class ReflectingActivity : Activity
 {
     List<string> _prompts = new List<string>();
     List<string> _questions = new List<string>();
 
-    public ReflectingActivity()
+    public ReflectingActivity(string name, string description, int duration) : base(name, description, duration)
     {
         // Construct
     }

@@ -1,10 +1,9 @@
-public class BreathingActivity
+public class BreathingActivity : Activity
 {
-    // No unique member variables
-
-    public BreathingActivity()
+    public BreathingActivity(string name, string description, int duration) : base(name, description, duration)
     {
         // Construct
+        // No unique member variables
     }
 
     public void Run()
