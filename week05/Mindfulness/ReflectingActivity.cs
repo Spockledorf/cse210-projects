@@ -20,11 +20,19 @@ public class ReflectingActivity : Activity
     }
     public string GetRandomPrompt()
     {
-        return "prompt";
+        int randomIndex = Random.Shared.Next(0, _prompts.Count);
+        
+        // Improvement idea: add list of used strings via indexes.
+        
+        return _prompts[randomIndex];
     }
     public string GetRandomQuestion()
     {
-        return "question";
+        int randomIndex = Random.Shared.Next(0, _prompts.Count);
+        
+        // Improvement idea: add list of used strings via indexes.
+        
+        return _questions[randomIndex];
     }
     public void DisplayPrompt()
     {
