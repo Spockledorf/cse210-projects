@@ -15,19 +15,20 @@ public class BreathingActivity : Activity
 
         // Select breathing pattern based on duration from user        
         int inhale, hold1, exhale, hold2;
-        if (_duration < 30)
-        {
-            (inhale, hold1, exhale, hold2) = (4, 0, 4, 0);
-        }
-        else if (_duration < 90)
+        // if (_duration < 30)
+        // {
+        //     (inhale, hold1, exhale, hold2) = (4, 0, 4, 0);
+        // }
+        // else 
+        if (_duration < 40)
         {
             (inhale, hold1, exhale, hold2) = (4, 0, 6, 0);
         }
-        else if (_duration < 180)
+        else if (_duration < 65)
         {
             (inhale, hold1, exhale, hold2) = (4, 4, 4, 4);
         }
-        else if (_duration < 600)
+        else if (_duration < 180)
         {
             (inhale, hold1, exhale, hold2) = (4, 7, 8, 0);
         }
