@@ -24,7 +24,7 @@ public class BreathingActivity : Activity
         {
             (inhale, hold1, exhale, hold2) = (4, 0, 6, 0);
         }
-        else if (_duration < 65)
+        else if (_duration < 60)
         {
             (inhale, hold1, exhale, hold2) = (4, 4, 4, 4);
         }
