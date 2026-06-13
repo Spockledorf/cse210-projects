@@ -23,12 +23,9 @@ public class ReflectingActivity : Activity
         // Display prompt and pause
         Console.Clear();
         DisplayPrompt();
-        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
-        Console.Write("You may begin in: ");
-        ShowSpinner(5, true);
 
         // Display questions
-        Console.Clear();
+        // Console.Clear();
         DisplayQuestions();
 
         // End of unique activity
@@ -53,13 +50,19 @@ public class ReflectingActivity : Activity
     public void DisplayPrompt()
     {
         // Display prompt logic
+        string prompt = GetRandomPrompt();
         Console.WriteLine();
         Console.WriteLine("Consider the following prompt: ");
         Console.WriteLine();
-        Console.WriteLine($"  --- {GetRandomPrompt()} ---");
+        Console.WriteLine($"  --- {prompt} ---");
         Console.WriteLine();
         Console.WriteLine("When you have something in mind, press enter to continue. ");
         Console.ReadLine();
+        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
+        Console.Write("You may begin in: ");
+        ShowSpinner(5, true);
+        Console.Clear();
+        Console.WriteLine($"  --- {prompt} ---");
     }
     public void DisplayQuestions()
     {
@@ -68,8 +71,9 @@ public class ReflectingActivity : Activity
 
         while (timer.Elapsed.TotalSeconds < _duration)
         {
-            Console.WriteLine(GetRandomQuestion());
+            Console.Write(GetRandomQuestion());
             ShowSpinner(10, false);
+            Console.WriteLine();
         }
         
         Console.WriteLine();

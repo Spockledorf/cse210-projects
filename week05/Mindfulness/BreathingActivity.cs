@@ -91,7 +91,5 @@ public class BreathingActivity : Activity
         Console.WriteLine($"Time Holding Breath: {(hold1 * cycles) + (hold2 * cycles)}s");
         Console.WriteLine($"Total Time: {minutes:D2}m {seconds:D2}s");
         Console.WriteLine($" ----------------------------------");
-        Console.WriteLine();
-
     }
 }
