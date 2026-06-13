@@ -60,9 +60,55 @@ public class ActivityManager
 
     private void StartReflectingActivity()
     {
-        List<string> prompts = new List<string>();
-        List<string> questions = new List<string>();
+        List<string> prompts = 
+        [
+            "Think of a time when you stood up for someone else.",
+            "Think of a time when you did something really difficult.",
+            "Think of a time when you faced a fear.",
+            "Think of a time when you kept going even when you wanted to quit.",
+            "Think of a time when you made a hard decision.",
+            "Think of a time when you defended what you believed in.",
+            "Think of a time when you helped someone in need.",
+            "Think of a time when you did something truly selfless.",
+            "Think of a time when you went out of your way for someone else.",
+            "Think of a time when you made someone's day better.",
+            "Think of a time when you sacrificed your time or comfort for another.",
+            "Think of a time when you forgave someone who hurt you.",
+            "Think of a time when you served without being asked.",
+            "Think of a time when you failed and got back up.",
+            "Think of a time when you learned something the hard way.",
+            "Think of a time when you changed for the better.",
+            "Think of a time when you adapted to an unexpected situation.",
+            "Think of a time when you surprised yourself.",
+            "Think of a time when you grew through a painful experience.",
+            "Think of a time when you turned a weakness into a strength.",
+            "Think of a time when you accomplished something you worked hard for.",
+            "Think of a time when your efforts made a real difference.",
+            "Think of a time when you finished something you started.",
+            "Think of a time when your Faith in Christ carried you through hardship.",
+            "Think of a time when you felt guided by the spirit.",
+            "Think of a time when you lived the Gospel of Jesus Christ even when there was pressure to do otherwise.",
+            "Think of a time when you trusted God even when things were uncertain."
+        ];
 
+        List<string> questions =
+        [
+            "Why was this experience meaningful to you?",
+            "How did this experience affect the people around you?",
+            "What made this moment stand out from everyday life?",
+            "What would have been lost if this moment had never happened?",
+            "What did you learn about yourself through this experience?",
+            "What personal strengths did you discover or use?",
+            "What surprised you about how you handled this situation?",
+            "How did this experience change the way you see yourself?",
+            "Who or what helped you along the way?",
+            "What emotions did you experience during this time?",
+            "How can you keep this experience in mind in the future?",
+            "Have you ever done anything like this before?",
+            "How might this experience prepare you for future challenges?",
+            "What would you tell someone else who is facing a similar situation?",
+            "How can you build on this strength going forward?"
+        ];
 
         ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will guide the user to think deeply, by having them consider a certain experience when they were successful or demonstrated strength. Then, prompt them with questions to reflect more deeply about details of this experience. They might discover more depth than they previously realized.", 0, prompts, questions);
 
