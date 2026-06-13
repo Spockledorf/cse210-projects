@@ -70,6 +70,6 @@ public class ActivityManager
         // 00m 00s
         int elapsedMin = _timeTracker.Elapsed.Minutes;
         int elapsedSec = _timeTracker.Elapsed.Seconds;
-        Console.WriteLine($"{elapsedMin:D2}m {elapsedSec:D2}s");
+        Console.Write($"{elapsedMin:D2}m {elapsedSec:D2}s");
     }
 }

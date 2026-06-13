@@ -16,10 +16,21 @@ public class Activity
     public void DisplayStartingMessage()
     {
         // Start message
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {_name}!");
+        Console.WriteLine();
+        Console.WriteLine($"{_description}");
+
+
     }
     public void DisplayEndingMessage()
     {
         // End message
+        Console.WriteLine();
+        Console.WriteLine("Well done!");
+        Console.WriteLine();
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_name}!");
+
     }
     public void ShowSpinner(int seconds)
     {
@@ -91,6 +102,7 @@ public class Activity
     }
     public int GetValidatedDuration()
     {
+        Console.WriteLine();
         int duration = 0;
         bool invalidDuration = true;
 
