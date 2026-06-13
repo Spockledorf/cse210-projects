@@ -9,7 +9,12 @@ public class ReflectingActivity : Activity
     }
     public void Run()
     {
-        // Run logic here
+        DisplayStartingMessage();
+        _duration = GetValidatedDuration();
+        // Unique Activity here
+
+        // End of unique activity
+        DisplayEndingMessage();
     }
     public string GetRandomPrompt()
     {

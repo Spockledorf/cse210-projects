@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Microsoft.VisualBasic;
 
 public class ActivityManager
 {
@@ -9,6 +8,8 @@ public class ActivityManager
     {
         _running = true;
     }
+
+    Activity myActivity = new Activity("Name", "Description", 0);
 
     public void Start()
     {
@@ -33,6 +34,8 @@ public class ActivityManager
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
+                    myActivity.ShowSpinner(2, false);
+                    Console.Clear();
                     break;
             }
         }
@@ -40,7 +43,8 @@ public class ActivityManager
 
     private void DisplayMenu()
     {
-        Console.WriteLine("\nMenu Options:");
+        Console.Clear();
+        Console.WriteLine("Menu Options:");
         Console.WriteLine("  1. Start breathing activity");
         Console.WriteLine("  2. Start reflecting activity");
         Console.WriteLine("  3. Start listing activity");
@@ -56,12 +60,14 @@ public class ActivityManager
 
     private void StartReflectingActivity()
     {
-        // TODO: instantiate and start your reflecting activity
+        ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will guide the user to think deeply, by having them consider a certain experience when they were successful or demonstrated strength. Then, prompt them with questions to reflect more deeply about details of this experience. They might discover more depth than they previously realized.", 0);
+        reflectingActivity.Run();
     }
 
     private void StartListingActivity()
     {
-        // TODO: instantiate and start your listing activity
+        ListingActivity listingActivity = new ListingActivity("Listing Activity", "This activity will guide the user to think broadly, by helping them list as many things as they can in a certain area of strength or positivity. They might discover more breadth than they previously realized. ", 0);
+        listingActivity.Run();
     }
 
     public void DisplayTotalTime()

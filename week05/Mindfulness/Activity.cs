@@ -30,30 +30,41 @@ public class Activity
         Console.WriteLine("Well done!");
         Console.WriteLine();
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name}!");
+        ShowSpinner(5, false);
 
+        Console.WriteLine("Press enter to continue.");
+        Console.ReadLine();
     }
-    public void ShowSpinner(int seconds)
+    public void ShowSpinner(int seconds, bool isTimeDisplayed)
     {
+        var spinnerClock = Stopwatch.StartNew();
+
         DateTime startTime = DateTime.Now;
         DateTime futureTime = startTime.AddSeconds(seconds);
-        int spinnerSpeed = 100;
+        int spinnerSpeed = 120;
 
         // Character pool: [▌ ▀ ▐ ▄] [▖ ▘ ▝ ▗] [| / — \] [▰ ▱ ▱ ▱]
 
         List<string> frames = [" ▌ ", " ▀ ", " ▐ ", " ▄ "];
         int frameCount = frames.Count();
         int frame = 0;
+        string current;
+        double elapsed;
+        int charCount;
 
-        while (DateTime.Now < futureTime)
+        while (spinnerClock.Elapsed.TotalSeconds < seconds)
         {
-
-            string current = frames[frame];
-            int charCount = current.Length;
+            elapsed = spinnerClock.Elapsed.TotalSeconds;
+            current = frames[frame];
+            if (isTimeDisplayed)
+            {
+                current = current + $" {elapsed:F0}s / {seconds}s";
+            }
+            charCount = current.Length;
 
             Console.Write(current);
             Thread.Sleep(spinnerSpeed);
             Console.Write(new string('\b', charCount) + new string(' ', charCount) + new string('\b', charCount));
-
             frame++;
             if (frame == frameCount)
             {
@@ -62,7 +73,7 @@ public class Activity
         }
     }
 
-    public void ShowProgressBar(int seconds, int barLength, bool isLeftToRight)
+    public void ShowProgressBar(int seconds, int barLength, bool isLeftToRight, bool isTimeDisplayed)
     {
         var barProgressClock = Stopwatch.StartNew();
 
@@ -74,20 +85,34 @@ public class Activity
             int filled = (int)Math.Round(elapsed / seconds * barLength);
             filled = Math.Clamp(filled, 1, barLength);
 
-            string filledChars = new string('█', filled);
-            string emptyChars = new string('-', barLength - filled);
+            // string filledChars = new string('█', filled);
+            // string emptyChars = new string('-', barLength - filled);
+            string charsLeft;
+            string charsRight;
             string bar;
             if (isLeftToRight)
             {
-                bar = filledChars + emptyChars;
+                charsLeft = new string('█', filled);
+                charsRight = new string('-', barLength - filled);
+                bar = charsLeft + charsRight;
             }
             else
             {
-                bar = emptyChars + filledChars;
+                charsLeft = new string('-', filled);
+                charsRight = new string('█', barLength - filled);
+                bar = charsRight + charsLeft;
             }
 
             // string frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
-            string frame = $"| {bar} |";
+            string frame;
+            if (isTimeDisplayed)
+            {
+                frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
+            }
+            else
+            {
+                frame = $"| {bar} |";
+            }
             int charCount = frame.Length;
 
             Console.Write(frame);
@@ -97,8 +122,14 @@ public class Activity
 
         // Write the completed bar
         // string completed = $"| {new string('█', barLength)} | {seconds}s / {seconds}s";
-        string completed = $"| {new string('█', barLength)} |";
-        Console.WriteLine(completed);
+        if (isLeftToRight)
+        {
+            Console.WriteLine($"| {new string('█', barLength)} |");
+        }
+        else
+        {
+            Console.WriteLine($"| {new string('-', barLength)} |");
+        }
     }
     public int GetValidatedDuration()
     {
