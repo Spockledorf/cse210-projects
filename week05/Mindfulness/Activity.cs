@@ -31,9 +31,6 @@ public class Activity
         Console.WriteLine();
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name}!");
         ShowSpinner(5, false);
-
-        Console.WriteLine("Press enter to continue.");
-        Console.ReadLine();
     }
     public void ShowSpinner(int seconds, bool isTimeDisplayed)
     {

@@ -73,6 +73,8 @@ public class BreathingActivity : Activity
 
         // Display breathing metrics
         DisplayBreathingStats(inhale, hold1, exhale, hold2, cycles, timer.Elapsed.Minutes, timer.Elapsed.Seconds);
+        Console.WriteLine("Press enter to continue.");
+        Console.ReadLine();
 
         // End of unique activity
         DisplayEndingMessage();
@@ -86,6 +88,7 @@ public class BreathingActivity : Activity
         Console.WriteLine($"Time Holding Breath: {(hold1 * cycles) + (hold2 * cycles)}s");
         Console.WriteLine($"Total Time: {minutes:D2}m {seconds:D2}s");
         Console.WriteLine($" ----------------------------------");
+        Console.WriteLine();
 
     }
 }
