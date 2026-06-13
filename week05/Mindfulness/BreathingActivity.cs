@@ -9,5 +9,7 @@ public class BreathingActivity : Activity
     public void Run()
     {
         // Run logic here
+        DisplayStartingMessage();
+        _duration = GetValidatedDuration();
     }
 }

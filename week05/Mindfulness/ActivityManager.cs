@@ -1,10 +1,13 @@
+using System.Diagnostics;
+using Microsoft.VisualBasic;
+
 public class ActivityManager
 {
-    private bool _running = true;
-
+    private bool _running;
+    private Stopwatch _timeTracker = Stopwatch.StartNew();
     public ActivityManager()
     {
-        // Construct
+        _running = true;
     }
 
     public void Start()
@@ -47,7 +50,8 @@ public class ActivityManager
 
     private void StartBreathingActivity()
     {
-        // TODO: instantiate and start your breathing activity
+        BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity", "This activity will help the user pace their breathing to have a session of deep breathing for a certain amount of time. They might find more peace and less stress through the exercise.", 0);
+        breathingActivity.Run();
     }
 
     private void StartReflectingActivity()
@@ -62,6 +66,10 @@ public class ActivityManager
 
     public void DisplayTotalTime()
     {
-        // Display elapsed time!
+        // Display elapsed time
+        // 00m 00s
+        int elapsedMin = _timeTracker.Elapsed.Minutes;
+        int elapsedSec = _timeTracker.Elapsed.Seconds;
+        Console.WriteLine($"{elapsedMin:D2}m {elapsedSec:D2}s");
     }
 }

@@ -51,21 +51,32 @@ public class Activity
         }
     }
 
-    public void ShowProgressBar(int seconds)
+    public void ShowProgressBar(int seconds, int barLength, bool isLeftToRight)
     {
-        var stopwatch = Stopwatch.StartNew();
-        
-        int updateSpeed = 100;
-        int barLength = 30;
+        var barProgressClock = Stopwatch.StartNew();
 
-        while (stopwatch.Elapsed.TotalSeconds < seconds)
+        int updateSpeed = 100;
+
+        while (barProgressClock.Elapsed.TotalSeconds < seconds)
         {
-            double elapsed = stopwatch.Elapsed.TotalSeconds;
+            double elapsed = barProgressClock.Elapsed.TotalSeconds;
             int filled = (int)Math.Round(elapsed / seconds * barLength);
             filled = Math.Clamp(filled, 1, barLength);
 
-            string bar = new string('█', filled) + new string('-', barLength - filled);
-            string frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
+            string filledChars = new string('█', filled);
+            string emptyChars = new string('-', barLength - filled);
+            string bar;
+            if (isLeftToRight)
+            {
+                bar = filledChars + emptyChars;
+            }
+            else
+            {
+                bar = emptyChars + filledChars;
+            }
+
+            // string frame = $"| {bar} | {elapsed:F0}s / {seconds}s";
+            string frame = $"| {bar} |";
             int charCount = frame.Length;
 
             Console.Write(frame);
@@ -74,7 +85,30 @@ public class Activity
         }
 
         // Write the completed bar
-        string completed = $"| {new string('█', barLength)} | {seconds}s / {seconds}s";
+        // string completed = $"| {new string('█', barLength)} | {seconds}s / {seconds}s";
+        string completed = $"| {new string('█', barLength)} |";
         Console.WriteLine(completed);
+    }
+    public int GetValidatedDuration()
+    {
+        int duration = 0;
+        bool invalidDuration = true;
+
+        while (invalidDuration)
+        {
+            Console.WriteLine("How long, in seconds, would you like for your session?");
+            Console.Write("  > ");
+
+            if (int.TryParse(Console.ReadLine(), out duration) && duration > 0)
+            {
+                invalidDuration = false;
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid number of seconds.");
+            }
+        }
+
+        return duration;
     }
 }
