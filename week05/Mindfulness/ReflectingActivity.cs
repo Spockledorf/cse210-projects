@@ -4,6 +4,8 @@ public class ReflectingActivity : Activity
 {
     private List<string> _prompts = new List<string>();
     private List<string> _questions = new List<string>();
+    private HashSet<int> _usedPromptsIndex = new HashSet<int>(); // Used HashSet, as it can't have duplicate values and has a faster lookup time.
+    private HashSet<int> _usedQuestionsIndex = new HashSet<int>();
 
     public ReflectingActivity(string name, string description, int duration, List<string> prompts, List<string> questions) : base(name, description, duration)
     {
@@ -19,7 +21,7 @@ public class ReflectingActivity : Activity
         Console.Clear();
         Console.WriteLine("Get ready...");
         ShowSpinner(3, false);
-        
+
         // Display prompt and pause
         Console.Clear();
         DisplayPrompt();
@@ -33,17 +35,38 @@ public class ReflectingActivity : Activity
     }
     public string GetRandomPrompt()
     {
-        int randomIndex = Random.Shared.Next(0, _prompts.Count);
+        if (_usedPromptsIndex.Count >= _prompts.Count)
+        {
+            _usedPromptsIndex.Clear();
+        }
 
-        // Improvement idea: add list of used strings via indexes.
+        int randomIndex;
+
+        do
+        {
+            randomIndex = Random.Shared.Next(0, _prompts.Count);
+        } while (_usedPromptsIndex.Contains(randomIndex));
+
+        _usedPromptsIndex.Add(randomIndex);
 
         return _prompts[randomIndex];
     }
     public string GetRandomQuestion()
     {
-        int randomIndex = Random.Shared.Next(0, _questions.Count);
+        if (_usedQuestionsIndex.Count >= _questions.Count)
+        {
+            _usedQuestionsIndex.Clear();
+        }
 
-        // Improvement idea: add list of used strings via indexes.
+        int randomIndex;
+
+        do
+        {
+            randomIndex = Random.Shared.Next(0, _questions.Count);
+        }
+        while (_usedQuestionsIndex.Contains(randomIndex));
+
+        _usedQuestionsIndex.Add(randomIndex);
 
         return _questions[randomIndex];
     }
@@ -75,7 +98,7 @@ public class ReflectingActivity : Activity
             ShowSpinner(10, false);
             Console.WriteLine();
         }
-        
+
         Console.WriteLine();
     }
 }
