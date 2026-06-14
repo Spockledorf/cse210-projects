@@ -4,6 +4,7 @@ public class ListingActivity : Activity
 {
     int _count = 0;
     private List<string> _prompts = new List<string>();
+    private HashSet<int> _usedPromptsIndex = new HashSet<int>();
 
     public ListingActivity(string name, string description, int duration, List<string> prompts) : base(name, description, duration)
     {
@@ -45,9 +46,19 @@ public class ListingActivity : Activity
     }
     public string GetRandomPrompt()
     {
-        int randomIndex = Random.Shared.Next(0, _prompts.Count);
-        
-        // Improvement idea: add list of used strings via indexes.
+        if (_usedPromptsIndex.Count >= _prompts.Count)
+        {
+            _usedPromptsIndex.Clear();
+        }
+
+        int randomIndex;
+
+        do
+        {
+            randomIndex = Random.Shared.Next(0, _prompts.Count);
+        } while (_usedPromptsIndex.Contains(randomIndex));
+
+        _usedPromptsIndex.Add(randomIndex);
 
         return _prompts[randomIndex];
     }
