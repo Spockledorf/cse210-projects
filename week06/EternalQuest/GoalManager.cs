@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 public class GoalManager
 {
-    private List<Goal> _goals = new List<Goal>
+    private List<Goal> _goals = new List<Goal>();
     
     private bool _running;
     private Stopwatch _timeTracker = Stopwatch.StartNew();

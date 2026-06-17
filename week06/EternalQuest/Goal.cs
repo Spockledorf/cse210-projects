@@ -1,8 +1,8 @@
-public class Goal
+public abstract class Goal
 {
-    private string _shortName = "";
-    private string _description = "";
-    private int _points = -1;
+    protected string _shortName = "";
+    protected string _description = "";
+    protected int _points = -1;
 
     protected Goal(string name, string description, int points)
     {
@@ -11,21 +11,14 @@ public class Goal
         _points = points;
     }
 
-    private void RecordEvent()
-    {
-        // Record event logic 
-    }
-    private bool IsComplete()
-    {
-        // Is complete logic
-        return false; 
-    }
-    private string GetDetailsString()
+    public abstract void RecordEvent();
+    public abstract bool IsComplete();
+    public virtual string GetDetailsString()
     {
         // Get Details logic 
         return "";
     }
-    private string GetStringRepresentation()
+    public virtual string GetStringRepresentation()
     {
         // Get string rep logic 
         return "";

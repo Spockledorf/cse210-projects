@@ -1,12 +1,9 @@
-public class SimpleGoal : Goal
+public class EternalGoal : Goal
 {
-    private bool _isComplete;
-
-    private SimpleGoal(string name, string description, int points) : base(name, description, points)
+    public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
-        _isComplete = false; // Goal is not complete by default, must record 
+        // no body needed
     }
-
     public override void RecordEvent()
     {
         throw new NotImplementedException();
