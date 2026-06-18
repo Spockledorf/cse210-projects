@@ -34,14 +34,7 @@ public class SimpleGoal : Goal
     }
     public override bool IsComplete()
     {
-        if (_isComplete == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return _isComplete;
     }
     public override string GetStringRepresentation()
     {
