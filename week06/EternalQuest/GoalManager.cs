@@ -213,46 +213,68 @@ public class GoalManager
                 ShowLoadingBar(2, 50);
                 break;
             case 1:
-                // Simple
-                Console.WriteLine("Simple Goal:");
-                Console.WriteLine("Enter Goal Short Name: (e.g. Read the Bible)");
-                Console.Write("  > ");
-                string goalShortName = Console.ReadLine().Trim();
-                Console.WriteLine("Enter Goal Description: (e.g. Read the bible for 10min a day)");
-                Console.Write("  > ");
-                string goalDescription = Console.ReadLine().Trim();
-                
-                int lowerBound = -99999;
-                int upperBound = 99999;
-                int goalPoints;
-
-                while (true)
                 {
-                    
-                    Console.WriteLine($"Enter Goal Point Value: (integer between {lowerBound} and {upperBound})");
+                    // Simple
+                    Console.WriteLine("Simple Goal:");
+                    Console.WriteLine("Enter Goal Short Name: (e.g. Read the Bible)");
                     Console.Write("  > ");
+                    string goalShortName = Console.ReadLine().Trim();
+                    Console.WriteLine("Enter Goal Description: (e.g. Read the bible for 10min a day)");
+                    Console.Write("  > ");
+                    string goalDescription = Console.ReadLine().Trim();
 
-                    string input = Console.ReadLine();
+                    int lowerBound = -99999;
+                    int upperBound = 99999;
+                    int goalPoints = GetUserIntSelect(upperBound, lowerBound);
 
-                    if (int.TryParse(input, out int selection) &&
-                        selection >= lowerBound &&
-                        selection <= upperBound)
-                    {
-                        goalPoints = selection;
-                        break;
-                    }
-
-                    Console.WriteLine($"Invalid input. Please enter a integer between {lowerBound} and {upperBound}.");
-                    ShowLoadingBar(1, 10);
+                    SimpleGoal simpleGoal = new SimpleGoal(goalShortName, goalDescription, goalPoints);
+                    _goals.Add(simpleGoal);
+                    break;
                 }
-                SimpleGoal simpleGoal = new SimpleGoal(goalShortName, goalDescription, goalPoints);
-                break;
             case 2:
-                // Eternal
-                break;
+                {
+                    // Eternal
+                    Console.WriteLine("Eternal Goal:");
+                    Console.WriteLine("Enter Goal Short Name: (e.g. Pray)");
+                    Console.Write("  > ");
+                    string goalShortName = Console.ReadLine().Trim();
+                    Console.WriteLine("Enter Goal Description: (e.g. Daily prayer)");
+                    Console.Write("  > ");
+                    string goalDescription = Console.ReadLine().Trim();
+
+                    int lowerBound = -99999;
+                    int upperBound = 99999;
+                    int goalPoints = GetUserIntSelect(upperBound, lowerBound);
+
+                    EternalGoal eternalGoal = new EternalGoal(goalShortName, goalDescription, goalPoints);
+                    _goals.Add(eternalGoal);
+                    break;
+                }
             case 3:
-                // Checklist
-                break;
+                {
+                    // Checklist
+                    Console.WriteLine("Checklist Goal:");
+                    Console.WriteLine("Enter Goal Short Name: (e.g. Exercise)");
+                    Console.Write("  > ");
+                    string goalShortName = Console.ReadLine().Trim();
+                    Console.WriteLine("Enter Goal Description: (e.g. Work out)");
+                    Console.Write("  > ");
+                    string goalDescription = Console.ReadLine().Trim();
+
+                    int lowerBound = -99999;
+                    int upperBound = 99999;
+                    int goalPoints = GetUserIntSelect(upperBound, lowerBound);
+
+                    Console.WriteLine("Enter how many times this goal must be completed: (e.g. 10)");
+                    int goalTarget = GetUserIntSelect(upperBound, 1);
+
+                    Console.WriteLine("Enter bonus points awarded on completion: (e.g. 500)");
+                    int bonusPoints = GetUserIntSelect(upperBound, 0);
+
+                    ChecklistGoal checklistGoal = new ChecklistGoal(goalShortName, goalDescription, goalPoints, goalTarget, bonusPoints);
+                    _goals.Add(checklistGoal);
+                    break;
+                }
             default:
                 Console.WriteLine("Invalid input.");
                 break;
