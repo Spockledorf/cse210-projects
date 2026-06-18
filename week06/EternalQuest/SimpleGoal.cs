@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public class SimpleGoal : Goal
 {
     private bool _isComplete;
@@ -16,13 +18,23 @@ public class SimpleGoal : Goal
         _isComplete = false;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        throw new NotImplementedException();
+        if (_isComplete == false)
+        {
+            Console.WriteLine($"Yay! You completed your goal! Enjoy {_points} points!");
+            SetCompleteStatus(true);
+            return _points;
+        }
+        else
+        {
+            Console.WriteLine($"You have already completed this goal! No points added.");
+            return 0;
+        }
     }
     public override bool IsComplete()
     {
-        if (_isComplete)
+        if (_isComplete == true)
         {
             return true;
         }
@@ -33,7 +45,8 @@ public class SimpleGoal : Goal
     }
     public override string GetStringRepresentation()
     {
-        return base.GetStringRepresentation();
+        // Get Details logic 
+        return $"SimpleGoal|{_shortName}|{_description}|{_points}|{_isComplete}";
     }
 
 }

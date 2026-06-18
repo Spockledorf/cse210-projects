@@ -59,9 +59,9 @@ public class GoalManager
                 case 3:
                     // Save Goals
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    // ShowLoadingBar(2, 50);
+                    ShowLoadingBar(2, 50);
                     Console.Clear();
-                    Console.WriteLine("⚠ Warning: Save file will be overwritten!");
+                    Console.WriteLine($"⚠ Warning: Save file will overwrite any pre-exiting files with the name '{_saveFile}'!");
                     if (GetUserConfirmation())
                     {
                         SaveGoalsToSave(_saveFile);
@@ -75,9 +75,9 @@ public class GoalManager
                 case 4:
                     // Load Goals
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    // ShowLoadingBar(2, 50);
+                    ShowLoadingBar(2, 50);
                     Console.Clear();
-                    Console.WriteLine("⚠ Warning: Current loaded goals will be overwritten by save file!");
+                    Console.WriteLine($"⚠ Warning: Current loaded goals will be overwritten by '{_saveFile}'!");
                     if (GetUserConfirmation())
                     {
                         LoadGoalsFromSave(_saveFile);
@@ -94,12 +94,19 @@ public class GoalManager
                     ShowLoadingBar(2, 50);
                     Console.Clear();
                     ListGoalNames();
-                    Console.WriteLine("What goal did you accomplish?");
-                    int goalNum = GetUserIntSelect(_goals.Count);
+                    Console.WriteLine("What goal did you accomplish? \nEnter 0 to cancel.");
+                    int goalNum = GetUserIntSelect(_goals.Count, 0) - 1;
+                    if (goalNum == -1)
+                    {
+                        Console.WriteLine("Operation cancelled.");
+                        ShowLoadingBar(2, 50);
+                        break;
+                    }
                     _goals[goalNum].RecordEvent();
                     Console.WriteLine();
                     _score += _goals[goalNum]._points;
                     Console.WriteLine($"You now have {_score} points!");
+                    Console.WriteLine();
                     Console.WriteLine("Press enter to continue.");
                     Console.ReadLine();
                     break;
@@ -115,15 +122,16 @@ public class GoalManager
                     ShowLoadingBar(2, 50);
                     break;
                 case 7:
-                    // Clear Goals from list
+                    // Clear Save
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
                     ShowLoadingBar(2, 50);
                     Console.Clear();
-                    Console.WriteLine("⚠ Warning: Current loaded goals will be erased!");
+                    Console.WriteLine("⚠ Warning: Current loaded goals and points will be erased!");
                     if (GetUserConfirmation())
                     {
                         _goals.Clear();
-                        Console.WriteLine("Goals erased.");
+                        Console.WriteLine($"{_goals.Count} Goals and {_score} points erased.");
+                        _score = 0;
                     }
                     else
                     {
@@ -224,6 +232,7 @@ public class GoalManager
 
                     int lowerBound = -99999;
                     int upperBound = 99999;
+                    Console.WriteLine("Enter goal point value: (e.g. 25)");
                     int goalPoints = GetUserIntSelect(upperBound, lowerBound);
 
                     SimpleGoal simpleGoal = new SimpleGoal(goalShortName, goalDescription, goalPoints);
@@ -243,6 +252,7 @@ public class GoalManager
 
                     int lowerBound = -99999;
                     int upperBound = 99999;
+                    Console.WriteLine("Enter goal point value: (e.g. 25)");
                     int goalPoints = GetUserIntSelect(upperBound, lowerBound);
 
                     EternalGoal eternalGoal = new EternalGoal(goalShortName, goalDescription, goalPoints);
@@ -262,6 +272,7 @@ public class GoalManager
 
                     int lowerBound = -99999;
                     int upperBound = 99999;
+                    Console.WriteLine("Enter goal point value: (e.g. 25)");
                     int goalPoints = GetUserIntSelect(upperBound, lowerBound);
 
                     Console.WriteLine("Enter how many times this goal must be completed: (e.g. 10)");

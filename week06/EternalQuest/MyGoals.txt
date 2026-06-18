@@ -1,4 +1,6 @@
-259
-SimpleGoal|Read Book|Read 10 pages|100|False
+1209
+SimpleGoal|Read Book|Read 10 pages|100|True
 EternalGoal|Pray|Daily prayer|50
-ChecklistGoal|Exercise|Work out|25|500|10|3
+ChecklistGoal|Exercise|Work out|25|500|10|11
+SimpleGoal|Watch Bob|Observe bob the builder for 10 minutes a day.|900|False
+ChecklistGoal|Weightlifting|Lift 300lbs 55 times daily|550|5000|5|1

@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public class ChecklistGoal : Goal
 {
     private int _amountCompleted = 0;
@@ -14,9 +16,24 @@ public class ChecklistGoal : Goal
         _amountCompleted = amountCompleted;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        // throw new NotImplementedException();
+        _amountCompleted++;
+        if (_amountCompleted > _target)
+        {
+            Console.WriteLine($"Nicely done! You have already completed the target, but enjoy {_points} more points!");
+            return _points;
+        }
+        else if (_amountCompleted == _target)
+        {
+            Console.WriteLine($"Horray! You completed the target! Enjoy {_points} points + {_bonus} bonus points!");
+            return _bonus + _points;
+        }
+        else
+        {
+            Console.WriteLine($"Congratulations! You've completed another part of your target! You get {_points} points! \nComplete this goal {_target - _amountCompleted} more times to get {_bonus} more bonus points!");
+            return _points;
+        }
     }
     public override bool IsComplete()
     {
@@ -46,7 +63,7 @@ public class ChecklistGoal : Goal
     public override string GetStringRepresentation()
     {
         // Get Details logic 
-        return "";
+        return $"ChecklistGoal|{_shortName}|{_description}|{_points}|{_bonus}|{_target}|{_amountCompleted}";
     }
 
 }
