@@ -291,10 +291,6 @@ public class GoalManager
                 break;
         }
     }
-    private void RecordEvent()
-    {
-        // Record Goal event
-    }
     private void LoadGoalsFromSave(string saveFile)
     {
         // Load goals from file
