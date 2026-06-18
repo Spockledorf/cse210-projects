@@ -102,9 +102,10 @@ public class GoalManager
                         ShowLoadingBar(2, 50);
                         break;
                     }
-                    _goals[goalNum].RecordEvent();
                     Console.WriteLine();
-                    _score += _goals[goalNum]._points;
+                    int earnedPoints = _goals[goalNum].RecordEvent();
+                    _score += earnedPoints;
+                    // _score += _goals[goalNum]._points;
                     Console.WriteLine($"You now have {_score} points!");
                     Console.WriteLine();
                     Console.WriteLine("Press enter to continue.");
