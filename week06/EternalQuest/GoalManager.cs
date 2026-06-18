@@ -43,7 +43,6 @@ public class GoalManager
                     ShowLoadingBar(2, 50);
                     Console.Clear();
                     CreateGoal();
-
                     break;
                 case 2:
                     // List Goals
@@ -174,7 +173,7 @@ public class GoalManager
         Console.Clear();
         Console.WriteLine("My Goals:");
 
-        // Display Menu options
+        // Display Goals
         int count = 0;
         foreach (Goal goal in _goals)
         {
@@ -283,11 +282,6 @@ public class GoalManager
     private void RecordEvent()
     {
         // Record Goal event
-    }
-
-    private void SaveGoals()
-    {
-        // Save Goals to file
     }
     private void LoadGoalsFromSave(string saveFile)
     {
