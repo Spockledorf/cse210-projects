@@ -173,6 +173,7 @@ public class GoalManager
     private void DisplayPlayerInfo()
     {
         // display stats
+        Console.WriteLine($"Player Level: {GetPlayerLevel()}");
         Console.WriteLine($"Current Points: {_score}");
         Console.WriteLine($"Number of Goals: {_goals.Count}");
     }
@@ -516,5 +517,9 @@ public class GoalManager
         int elapsedMin = _timeTracker.Elapsed.Minutes;
         int elapsedSec = _timeTracker.Elapsed.Seconds;
         Console.Write($"{elapsedMin:D2}m {elapsedSec:D2}s");
+    }
+    private int GetPlayerLevel()
+    {
+        return (_score / 1000) + 1;
     }
 }
