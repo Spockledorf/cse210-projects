@@ -22,7 +22,14 @@ public class SimpleGoal : Goal
     }
     public override bool IsComplete()
     {
-        throw new NotImplementedException();
+        if (_isComplete)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public override string GetStringRepresentation()
     {

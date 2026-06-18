@@ -13,8 +13,14 @@ public class GoalManager
         "Save Goals",       // 3
         "Load Goals",       // 4
         "Record Event",     // 5
-        "Clear Save",       // 6
-        "Quit"              // 7
+        "Set Save File",    // 6
+        "Clear Save",       // 7
+        "Quit"              // 8
+    ];
+    private readonly List<string> _goalTypes = [
+        "Simple Goal",
+        "Eternal Goal",
+        "Checklist Goal"
     ];
 
     public GoalManager()
@@ -34,43 +40,108 @@ public class GoalManager
                 case 1:
                     // Create New Goal
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    CreateGoal();
+
                     break;
                 case 2:
                     // List Goals
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    ListGoalDetails();
+                    Console.WriteLine();
+                    DisplayPlayerInfo();
+                    Console.WriteLine();
+                    Console.WriteLine("Press enter to continue.");
+                    Console.ReadLine();
                     break;
                 case 3:
                     // Save Goals
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    // ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    Console.WriteLine("⚠ Warning: Save file will be overwritten!");
+                    if (GetUserConfirmation())
+                    {
+                        SaveGoalsToSave(_saveFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Operation Cancelled.");
+                    }
+                    ShowLoadingBar(2, 50);
                     break;
                 case 4:
                     // Load Goals
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    // ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    Console.WriteLine("⚠ Warning: Current loaded goals will be overwritten by save file!");
+                    if (GetUserConfirmation())
+                    {
+                        LoadGoalsFromSave(_saveFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Operation Cancelled.");
+                    }
+                    ShowLoadingBar(2, 50);
                     break;
                 case 5:
                     // Record Event
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    ListGoalNames();
+                    Console.WriteLine("What goal did you accomplish?");
+                    int goalNum = GetUserIntSelect(_goals.Count);
+                    _goals[goalNum].RecordEvent();
+                    Console.WriteLine();
+                    _score += _goals[goalNum]._points;
+                    Console.WriteLine($"You now have {_score} points!");
+                    Console.WriteLine("Press enter to continue.");
+                    Console.ReadLine();
                     break;
                 case 6:
-                    // Clear Goals from list
+                    // Set Save File
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    Console.Write("Specify save file: ");
+                    string userSaveFile = Console.ReadLine().Trim();
+                    _saveFile = userSaveFile;
+                    Console.WriteLine($"Save file set as: '{_saveFile}'");
+                    ShowLoadingBar(2, 50);
                     break;
                 case 7:
+                    // Clear Goals from list
+                    Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
+                    ShowLoadingBar(2, 50);
+                    Console.Clear();
+                    Console.WriteLine("⚠ Warning: Current loaded goals will be erased!");
+                    if (GetUserConfirmation())
+                    {
+                        _goals.Clear();
+                        Console.WriteLine("Goals erased.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Operation Cancelled.");
+                    }
+                    ShowLoadingBar(2, 50);
+                    break;
+                case 8:
                     // Quit
                     Console.WriteLine($"Selected: '{_menuOptions[option - 1]}'");
-                    ShowLoadingBar(3, 70);
+                    ShowLoadingBar(2, 50);
                     _running = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    ShowLoadingBar(3, 50);
                     Console.Clear();
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    ShowLoadingBar(2, 50);
                     break;
             }
         }
@@ -86,7 +157,7 @@ public class GoalManager
         foreach (string option in _menuOptions)
         {
             count++;
-            Console.WriteLine($"{count}. {_menuOptions[count - 1]}");
+            Console.WriteLine($"  {count}. {_menuOptions[count - 1]}");
         }
         // Console.Write("Select a choice from the menu: ");
     }
@@ -94,20 +165,98 @@ public class GoalManager
     private void DisplayPlayerInfo()
     {
         // display stats
+        Console.WriteLine($"Current Points: {_score}");
+        Console.WriteLine($"Number of Goals: {_goals.Count}");
     }
     private void ListGoalNames()
     {
         // List Goal Names
+        Console.Clear();
+        Console.WriteLine("My Goals:");
+
+        // Display Menu options
+        int count = 0;
+        foreach (Goal goal in _goals)
+        {
+            count++;
+            Console.WriteLine($"  {count}. {_goals[count - 1].GetNameString()}");
+        }
     }
 
     private void ListGoalDetails()
     {
         // List Goal Details
+        Console.WriteLine("My Goals:");
+
+        foreach (Goal goal in _goals)
+        {
+            Console.WriteLine($"{goal.GetDetailsString()}");
+        }
     }
 
     private void CreateGoal()
     {
         // Create Goal
+        Console.WriteLine("Select Goal Type to create: ");
+        int count = 0;
+        foreach (string goalType in _goalTypes)
+        {
+            count++;
+            Console.WriteLine($"  {count}. {goalType}");
+        }
+        Console.WriteLine("Enter 0 to cancel.");
+        int option = GetUserIntSelect(_goalTypes.Count, 0);
+        switch (option)
+        {
+            case 0:
+                Console.WriteLine("Goal creation cancelled.");
+                ShowLoadingBar(2, 50);
+                break;
+            case 1:
+                // Simple
+                Console.WriteLine("Simple Goal:");
+                Console.WriteLine("Enter Goal Short Name: (e.g. Read the Bible)");
+                Console.Write("  > ");
+                string goalShortName = Console.ReadLine().Trim();
+                Console.WriteLine("Enter Goal Description: (e.g. Read the bible for 10min a day)");
+                Console.Write("  > ");
+                string goalDescription = Console.ReadLine().Trim();
+                
+                int lowerBound = -99999;
+                int upperBound = 99999;
+                int goalPoints;
+
+                while (true)
+                {
+                    
+                    Console.WriteLine($"Enter Goal Point Value: (integer between {lowerBound} and {upperBound})");
+                    Console.Write("  > ");
+
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out int selection) &&
+                        selection >= lowerBound &&
+                        selection <= upperBound)
+                    {
+                        goalPoints = selection;
+                        break;
+                    }
+
+                    Console.WriteLine($"Invalid input. Please enter a integer between {lowerBound} and {upperBound}.");
+                    ShowLoadingBar(1, 10);
+                }
+                SimpleGoal simpleGoal = new SimpleGoal(goalShortName, goalDescription, goalPoints);
+                break;
+            case 2:
+                // Eternal
+                break;
+            case 3:
+                // Checklist
+                break;
+            default:
+                Console.WriteLine("Invalid input.");
+                break;
+        }
     }
     private void RecordEvent()
     {
@@ -129,11 +278,25 @@ public class GoalManager
             return;
         }
         string[] lines = File.ReadAllLines(saveFile);
-        string[] parts;
 
-        foreach (string line in lines)
+        if (lines.Length == 0)
         {
-            parts = line.Split('|');
+            Console.WriteLine("Save file is empty.");
+            return;
+        }
+
+        // First line = score
+        if (!int.TryParse(lines[0], out _score))
+        {
+            Console.WriteLine($"Warning: Invalid score value '{lines[0]}'");
+            _score = 0;
+        }
+
+        // Start at line 1, line 0 is score
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string[] parts = line.Split('|');
 
             if (parts.Length < 4)
             {
@@ -151,7 +314,7 @@ public class GoalManager
                 Console.WriteLine($"Warning: Invalid int value '{parts[3]}'");
             }
 
-            Goal? lineGoal = null;
+            Goal lineGoal = null;
 
             switch (goalType.Trim())
             {
@@ -204,14 +367,19 @@ public class GoalManager
 
     private void SaveGoalsToSave(string saveFile)
     {
-        // Save Goals to file
         using (StreamWriter outputFile = new StreamWriter(saveFile))
         {
+            // First line = score
+            outputFile.WriteLine(_score);
+
+            // Remaining lines are goals
             foreach (Goal goal in _goals)
             {
-                outputFile.WriteLine($"{goal.GetStringRepresentation()}");
+                outputFile.WriteLine(goal.GetStringRepresentation());
             }
         }
+
+        Console.WriteLine($"Successfully saved {_goals.Count} goals to save file.");
     }
 
     // My Methods
@@ -264,6 +432,7 @@ public class GoalManager
             }
 
             Console.WriteLine($"Invalid input. Please enter a integer between {lowerBound} and {upperBound}.");
+            ShowLoadingBar(1, 10);
         }
     }
     public void ShowLoadingBar(int seconds, int updateDelay = 100, bool isTimeDisplayed = false)

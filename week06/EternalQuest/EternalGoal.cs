@@ -6,11 +6,11 @@ public class EternalGoal : Goal
     }
     public override void RecordEvent()
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"Congratulations! You have earned {_points} points!");
     }
     public override bool IsComplete()
     {
-        throw new NotImplementedException();
+        return false;
     }
     public override string GetStringRepresentation()
     {

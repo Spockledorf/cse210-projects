@@ -9,7 +9,7 @@ class Program
         GoalManager game = new GoalManager();
         
         Console.Write("Starting ");
-        game.ShowLoadingBar(2,35);
+        game.ShowLoadingBar(1,30);
         game.Start();
 
         

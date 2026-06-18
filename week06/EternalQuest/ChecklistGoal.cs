@@ -16,16 +16,32 @@ public class ChecklistGoal : Goal
 
     public override void RecordEvent()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
     public override bool IsComplete()
     {
-        throw new NotImplementedException();
+        if (_amountCompleted >= _target)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public override string GetDetailsString()
     {
         // Get Details logic 
-        return "";
+         string goalString;
+        if (IsComplete())
+        {
+            goalString = $"[X] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target} (Done / Target)";
+        }
+        else
+        {
+            goalString = $"[ ] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target} (Done / Target)";
+        }
+        return goalString;
     }
     public override string GetStringRepresentation()
     {

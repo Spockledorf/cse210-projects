@@ -1,0 +1,4 @@
+259
+SimpleGoal|Read Book|Read 10 pages|100|False
+EternalGoal|Pray|Daily prayer|50
+ChecklistGoal|Exercise|Work out|25|500|10|3
