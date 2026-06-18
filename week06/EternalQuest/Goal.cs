@@ -2,7 +2,7 @@ public abstract class Goal
 {
     protected string _shortName = "";
     protected string _description = "";
-    public readonly int _points = -1;
+    protected int _points = -1;
 
     protected Goal(string name, string description, int points)
     {
