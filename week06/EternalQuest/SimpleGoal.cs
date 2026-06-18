@@ -1,5 +1,3 @@
-using System.Drawing;
-
 public class SimpleGoal : Goal
 {
     private bool _isComplete;
