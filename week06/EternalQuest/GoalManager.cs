@@ -6,7 +6,6 @@ public class GoalManager
     private int _score = 0;
     private string _saveFile = "MyGoals.txt";
     private bool _running;
-    private Stopwatch _timeTracker = Stopwatch.StartNew();
     private readonly List<string> _menuOptions = [
         "Create New Goal",  // 1
         "List Goals",       // 2
@@ -509,14 +508,6 @@ public class GoalManager
         }
 
         Console.CursorVisible = true;
-    }
-    public void DisplayTotalTime()
-    {
-        // Display elapsed time
-        // 00m 00s
-        int elapsedMin = _timeTracker.Elapsed.Minutes;
-        int elapsedSec = _timeTracker.Elapsed.Seconds;
-        Console.Write($"{elapsedMin:D2}m {elapsedSec:D2}s");
     }
     private int GetPlayerLevel()
     {
