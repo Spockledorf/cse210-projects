@@ -1,5 +1,3 @@
-using System.Drawing;
-
 public class ChecklistGoal : Goal
 {
     private int _amountCompleted = 0;
