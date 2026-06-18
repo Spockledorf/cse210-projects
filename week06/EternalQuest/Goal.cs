@@ -31,9 +31,5 @@ public abstract class Goal
         }
         return goalString;
     }
-    public virtual string GetStringRepresentation()
-    {
-        // Get string rep logic 
-        return "";
-    }
+    public abstract string GetStringRepresentation();
 }
