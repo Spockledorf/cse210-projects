@@ -9,7 +9,7 @@ public class SwimmingActivity : Activity
     
     public override double GetDistance()
     {
-        return _lapCount * 50 / 1000 * 0.62;
+        return _lapCount * 50 / 1000 * 0.62; // miles = swimming laps * 50 / 1000 * 0.62
     }
     public override double GetSpeed()
     {
