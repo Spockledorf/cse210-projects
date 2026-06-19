@@ -7,5 +7,16 @@ public class SwimmingActivity : Activity
         _lapCount = lapCount;
     }
     
-    // TODO
+    public override double GetDistance()
+    {
+        return _lapCount * 50 / 1000 * 0.62;
+    }
+    public override double GetSpeed()
+    {
+        return GetDistance() / GetDuration() * 60;
+    }
+    public override double GetPace()
+    {
+        return GetDuration() / GetDistance();
+    }
 }
