@@ -7,5 +7,16 @@ public class BikingActivity : Activity
         _speed = speed;
     }
     
-    // TODO
+    public override double GetDistance()
+    {
+        return _speed * GetDuration() / 60;
+    }
+    public override double GetSpeed()
+    {
+        return GetDistance() / GetDuration() * 60;
+    }
+    public override double GetPace()
+    {
+        return 60 / _speed;
+    }
 }
