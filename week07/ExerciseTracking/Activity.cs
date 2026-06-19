@@ -1,11 +1,11 @@
 public abstract class Activity
 {
-    private string _dateDay;
+    private int _dateDay;
     private string _dateMonth;
     private int _dateYear;
     private int _duration; // Minutes
 
-    public Activity(string day, string month, int year, int duration)
+    public Activity(int day, string month, int year, int duration)
     {
         _dateDay = day;
         _dateMonth = month;
@@ -20,7 +20,7 @@ public abstract class Activity
 
     public string GetDate()
     {
-        return $"{_dateDay} {_dateMonth} {_dateYear}";
+        return $"{_dateDay:D2} {_dateMonth} {_dateYear}";
     }
 
     public abstract double GetDistance();
